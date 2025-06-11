@@ -54,6 +54,27 @@ html {
 #projects {
   scroll-margin-top: 100px; /* adjust to match your header height */
 }
+.projects-overview .grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* center align */
+  gap: 2rem;
+}
+
+.project {
+  text-align: center;
+  max-width: 300px; /* optional: limit size for clean layout */
+}
+
+.project img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+}
+
 #services {
   scroll-margin-top: 100px; /* adjust to match your header height */
 }
+
