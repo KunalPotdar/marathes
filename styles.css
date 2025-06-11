@@ -47,3 +47,7 @@ footer {
 }
 footer .social { list-style:none; display:flex; justify-content:center; padding:0; }
 footer .social li { margin:0 0.5rem; }
+
+html {
+  scroll-behavior: smooth;
+}
