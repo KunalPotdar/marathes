@@ -115,6 +115,38 @@ html {
   scroll-margin-top: 100px; /* adjust to match your header height */
 }
 
+.header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Group logo and tagline */
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo img {
+  height: 60px;
+  width: auto;
+}
+
+/* Tagline text */
+.tagline h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  color: #333;
+}
+
+.tagline p {
+  font-size: 0.9rem;
+  margin: 0;
+  color: #666;
+}
+
 @media (max-width: 768px) {
   .hero-topbar {
     flex-direction: column;
@@ -123,5 +155,22 @@ html {
 
   .hero-text {
     margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-flex {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .logo-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    gap: 1rem;
   }
 }
