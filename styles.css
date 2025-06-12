@@ -89,6 +89,7 @@ header nav a:focus {
 .hero-slider {
   position: relative;
   height: 90vh;
+  min-height: 300px;
   overflow: hidden;
 }
 
@@ -104,6 +105,17 @@ header nav a:focus {
 .slide.active {
   opacity: 1;
   z-index: 1;
+}
+
+/* Mobile styles for hero slider */
+@media (max-width: 768px) {
+  .hero-slider {
+    height: 40vh;
+    min-height: 180px;
+  }
+  .slide {
+    background-position: center top;
+  }
 }
 
 /* Topbar container */
