@@ -260,3 +260,40 @@ html {
     gap: 0.5rem;
   }
 }
+
+@media (max-width: 768px) {
+  .header-flex {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0.5rem 1rem;
+  }
+
+  .logo-group {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .tagline h1 {
+    font-size: 1.1rem;
+  }
+
+  .tagline p {
+    font-size: 0.75rem;
+  }
+
+  .logo img {
+    height: 40px;
+  }
+
+  nav ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  nav ul li {
+    padding: 0.3rem 1rem;
+  }
+}
