@@ -202,41 +202,23 @@ html {
 
 /* Mobile Styles */
 @media (max-width: 768px) {
-  .hero-topbar {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .hero-text {
-    margin-top: 0.5rem;
-  }
-
-  .header-flex {
-    flex-direction: column;
-    align-items: flex-start;
+  .top-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     padding: 0.5rem 1rem;
   }
 
   .logo-group {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 0.5rem;
-  }
-
-  .tagline h1 {
-    font-size: 1.1rem;
-  }
-
-  .tagline p {
-    font-size: 0.75rem;
-  }
-
-  .logo img {
-    height: 40px;
   }
 
   .menu-toggle {
     display: block;
+    align-self: flex-end;
+    margin-left: auto;
   }
 
   nav {
