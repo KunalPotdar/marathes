@@ -18,27 +18,32 @@
 
     <!-- Hamburger for Mobile -->
     <button class="menu-toggle" id="menuToggle">&#9776;</button>
-  </div>
-
-  <!-- Navigation -->
+     <!-- Navigation -->
   <nav id="mainNav">
     <ul>
       <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
+      <li><a href="#aboutus">About</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#services">Services</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="#services">Awards</a></li>
+      <li><a href="#contactus" class="nav-button">Contact Us</a></li>
     </ul>
   </nav>
+  </div>
+
+ 
 </header>
 
   <!-- Hero Section -->
   <section class="hero-slider">
-    <!-- Background Slides -->
-    <div class="slide active" style="background-image: url('images/background-image.jpg');"></div>
-    <div class="tagline">
-      <h1>Building with Balance & Strength  </h1>
-    </div>
+    <video autoplay muted loop playsinline class="bg-video">
+    <source src="images/211152_small2.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  
+  <div class="tagline">
+    <h1>Building it with Balance & Strength</h1>
+  </div>
   </section>
   
    <!-- Featured Projects -->
@@ -46,17 +51,17 @@
     <div class="container">
       <h2>Featured Projects</h2>
       <div class="grid">
-        <div class="project">
-          <img src="images/aashirwad.jpg" alt="आशिर्वाद अपार्टमेंट">
-          <h4>"आशिर्वाद अपार्टमेंट"</h4>
-        </div>
+        <a href="projects/aashirwad.html" class="project" target="_blank" rel="noopener">
+        <img src="images/aashirwad.jpg" alt="Aashirwad Apartment" />
+        <h4>“आशिर्वाद अपार्टमेंट”</h4>
+        </a>
         <div class="project">
           <img src="images/girganga.jpg" alt="गिरगंगा अपार्टमेंट ">
           <h4>गिरगंगा अपार्टमेंट</h4>
         </div>
         <div class="project">
           <img src="images/houses.png" alt="Project 3">
-          <h4>Dream Homes</h4>
+          <h4>Twin Bunglows</h4>
         </div>
       </div>
       <a href="projects.html" class="btn">View All Projects</a>
@@ -87,7 +92,7 @@
   </section>
 
   <!-- About Preview -->
-  <section class="about-overview">
+  <section  id="aboutus"  class="about-overview">
     <div class="container">
       <h2>About Us</h2>
       <p>With over 20 years in the building industry, we pride ourselves on delivering excellent craftsmanship and client satisfaction.</p>
@@ -113,7 +118,7 @@
   </section>
 
   <!-- Contact CTA -->
-  <section class="contact-cta">
+  <section id="contactus" class="contact-cta">
     <div class="container">
       <h2>Ready to Start Your Project?</h2>
       <a href="contact.html" class="btn">Contact Us</a>
