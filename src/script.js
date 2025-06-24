@@ -26,7 +26,7 @@ const camera = new THREE.OrthographicCamera(
   1000                        // far
 );
 
-camera.position.set(0, -5, 20); // Set camera back along z-axis
+camera.position.set(10, -20, 30); // Set camera back along z-axis
 camera.lookAt(0, 0, 0);
 
 
@@ -63,7 +63,9 @@ loader.load(
     modelPath,
     (gltf) => {
         const model = gltf.scene;
-        model.position.set(0, 0, 0);
+        const box = new THREE.Box3().setFromObject(model);
+        const center = box.getCenter(new THREE.Vector3());
+        model.position.sub(center); // Center the model at the origin
         scene.add(model);
         gltf.scene.traverse((child) => {
 	    if (child.isMesh && child.name.includes("Box_Floor")) {
@@ -112,6 +114,19 @@ scene.add(dirLight3);
 const dirLight4 = new THREE.DirectionalLight(0xffffff, 0.5);
 dirLight4.position.set(100, -100, -100);
 scene.add(dirLight4);
+
+// Additional fill lights for even more balanced illumination
+const fillLight1 = new THREE.PointLight(0xffffff, 0.3, 500);
+fillLight1.position.set(0, 100, 0);
+scene.add(fillLight1);
+
+const fillLight2 = new THREE.PointLight(0xffffff, 0.2, 500);
+fillLight2.position.set(0, 0, 100);
+scene.add(fillLight2);
+
+const fillLight3 = new THREE.PointLight(0xffffff, 0.2, 500);
+fillLight3.position.set(0, 0, -100);
+scene.add(fillLight3);
 
 
 // Post-processing removed
