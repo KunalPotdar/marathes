@@ -1,0 +1,162 @@
+body {
+    margin: 0;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#floorPanel {
+    position: fixed;
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(26, 45, 90, 0.9); /* Navy blue semi-transparent */
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    overflow-y: auto;
+}
+
+.floorBtn {
+    background-color: #1a2d5a; /* Navy blue */
+    color: white;
+    border: none;
+    padding: 15px 20px; /* Bigger buttons */
+    cursor: pointer;
+    font-size: 18px; /* Bigger text */
+    border-radius: 5px;
+    transition: background 0.3s;
+    min-width: 80px; /* Ensure uniform width */
+}
+
+.floorBtn:hover {
+    background-color: #2b447a;
+}
+
+/* If more than 5 floors, enable scrolling */
+#floorPanel::-webkit-scrollbar {
+    width: 8px;
+}
+
+#floorPanel::-webkit-scrollbar-thumb {
+    background: #666;
+    border-radius: 4px;
+}
+
+#floorPanel::-webkit-scrollbar-track {
+    background: #222;
+}
+
+/* Mobile styles (screen width 768px and below) */
+@media (max-width: 768px) {
+  #floorPanel {
+    transform: scale(0.8); /* Reduce size */
+    top: 5px;
+    right: 5px;
+    padding: 5px;
+  }
+
+  .floorBtn {
+    font-size: 12px;       /* Smaller text */
+    padding: 2px 4px;     /* Less padding */
+    margin: 3px 0;    
+  }
+}
+
+/* Right-side floor options panel */
+#floorOptionsPanel {
+  position: fixed;
+    display: none;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  background-color: rgba(26, 45, 90, 0.9); /* Navy blue semi-transparent */
+  padding: 10px;
+  flex-direction: column;
+  gap: 5px;
+  overflow-y: auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#floorOptionsPanel h4 {
+  margin-top: 0;
+}
+
+#floorOptionsPanel button {
+  margin-bottom: 6px;
+  width: 100%;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -30%);
+  background-color: #ffffff;
+  padding: 24px 28px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border-radius: 14px;
+  border: 1px solid #d9e0ec;
+  z-index: 1000;
+  width: 320px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.popup h3 {
+  font-size: 28px;
+  color: #1a2d5a; /* Elegant navy blue */
+  margin-bottom: 12px;
+}
+
+.popup p {
+  font-size: 20px;
+  color: #1a2d5a;
+  margin-bottom: 24px;
+}
+
+.popup .close {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.popup button {
+   background-color: #1a2d5a;       
+  color: #fff;                     /* White text */
+  border: none;
+  padding: 10px 16px;
+  font-size: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: 10px;
+  margin: 10px; 
+  font-family: 'Segoe UI', sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+.popup button:hover {
+ background-color: #2b447a;   
+}
+
+#walkthroughBtn {
+position: absolute;
+top: 20px;
+left: 20px;
+padding: 10px 20px;
+font-size: 18px;
+z-index: 1;
+background-color: #222;
+color: white;
+border: none;
+cursor: pointer;
+}
+
+#walkthroughBtn:hover {
+  background-color: #444;
+}

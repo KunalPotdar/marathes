@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>2D View</title>
+  <style>
+    body {
+      text-align: center;
+      background: #f0f0f0;
+    }
+    img {
+      max-width: 90%;
+      margin-top: 30px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h2 id="title">2D Floor Plan</h2>
+  <img id="floor-image" src="" alt="2D Floor Plan">
+  
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const aptId = params.get('id'); // e.g., A-102
+
+    if (aptId) {
+      document.getElementById('title').textContent = `2D Floor Plan for ${aptId}`;
+      document.getElementById('floor-image').src = `client/project2/apts/A-102.png`;
+    }
+  </script>
+</body>
+</html>

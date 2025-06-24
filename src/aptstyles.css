@@ -1,0 +1,67 @@
+/* Walkthrough Controls Panel (bottom-centered) */
+.controls-panel {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(26, 45, 90, 0.9); /* Navy blue semi-transparent */
+  color: #fff;
+  padding: 15px 20px;
+  border-radius: 10px;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
+  z-index: 999;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  width: auto;
+  max-width: 90%;
+  text-align: center;
+}
+
+.controls-panel h3 {
+  margin-top: 0;
+  font-size: 16px;
+  color: #ffd700; /* Gold accent */
+}
+
+.controls-panel ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.controls-panel li {
+  margin: 4px 8px;
+}
+
+.walkthrough-btn {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #1a2d5a; /* Navy blue */
+  color: #fff;
+  padding: 15px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+.walkthrough-btn:hover {
+  background-color: #2b447a;
+}
+/* Responsive scaling for smaller screens */
+@media (max-width: 600px) {
+  .controls-panel {
+    font-size: 12px;
+    padding: 10px 15px;
+  }
+}

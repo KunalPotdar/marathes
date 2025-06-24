@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House-In-Meta</title>
+    <link rel="stylesheet" href="styles-ext.css">
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@latest/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@latest/examples/jsm/"
+            }
+        }
+    </script>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+    <div id="floorPanel" class="panel">
+       <button class="floorBtn" onclick="showFloorOptions(4)" onmouseover="highlightFloor(4)" onmouseout="resetHighlight()">Top</button>
+       <button class="floorBtn" onclick="showFloorOptions(3)" onmouseover="highlightFloor(3)" onmouseout="resetHighlight()">2nd</button>
+       <button class="floorBtn" onclick="showFloorOptions(2)" onmouseover="highlightFloor(2)" onmouseout="resetHighlight()">1st</button>
+       <button class="floorBtn" onclick="showFloorOptions(1)" onmouseover="highlightFloor(1)" onmouseout="resetHighlight()">G</button>
+    </div>
+    <div id="floorOptionsPanel">
+      <h4 id="floorLabel" style="color: white; font-size: 18px;">View Apartments</h4>
+      <button class="floorBtn" onclick="showApartmentPopup('A-102', '2 BHK', '1200 sqft')">Apartment 1</button><br>
+      <button class="floorBtn" onclick="showApartmentPopup('A-202', '4 BHK', '1600 sqft')">Apartment 2</button><br>
+      <button class="floorBtn" onclick="showApartmentPopup('A-302', '2 BHK', '1200 sqft')">Apartment 3</button><br>
+      <button class="floorBtn" onclick="showApartmentPopup('A-402', '4 BHK', '1650 sqft')">Apartment 4</button><br>
+      <button class="floorBtn" onclick="hideFloorOptions()">Close</button>
+    </div>
+        <!-- Popup (Hidden by Default) -->
+      <div id="apartment-popup" class="popup">
+          <span class="close" onclick="closePopup()">&times;</span>
+          <h3 id="apartment-id"></h3>
+          <p id="apartment-info"></p>
+          <button onclick="openApartmentPage('A')">3D Immersive Walkthrough</button>
+          <button onclick="openApartment2DPage('A')">2D Floor Plan</button>   
+       </div>
+    <canvas id="threejsCanvas"></canvas>
+    <h2 id="model-name" style="position: absolute; color: white; padding: 10px;"></h2>
+    <script type="module" src="script.js"></script>
+    <script>
+            let selectedApartmentId = '';
+    
+          function showApartmentPopup(id, type, size) {
+            selectedApartmentId = id;
+            document.getElementById('apartment-id').textContent = `Apartment ${id}`;
+            document.getElementById('apartment-info').textContent = `${type}, ${size}`;
+            document.getElementById('apartment-popup').style.display = 'block';
+          }
+        
+          function closePopup() {
+            document.getElementById('apartment-popup').style.display = 'none';
+          }
+            
+          function openApartmentPage(apartmentId) {
+            // Pass the ID via URL
+            window.location.href = `apartment_view.html?id=${apartmentId}`;
+          }
+
+          function openApartment2DPage(apartmentId) {
+             window.location.href = `2D_view.html?id=${apartmentId}`;
+          }
+    </script>
+</body>
+</html>
