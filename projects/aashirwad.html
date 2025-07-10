@@ -9,40 +9,48 @@
       margin: 0;
       font-family: Arial, sans-serif;
       color: #333;
-    }
-
-    header {
-      background: #004aad;
-      color: white;
-      padding: 20px 40px;
-      text-align: center;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 2.2rem;
-    }
-
-    header p {
-      margin-top: 8px;
-      font-size: 1.1rem;
+      background: #ffdbcbf3;
     }
 
     .hero {
-      background: url('https://images.unsplash.com/photo-1570129477492-45c003edd2be') center/cover no-repeat;
+      background: url('../images/marathin.png') center/cover no-repeat;
       color: white;
       text-align: center;
-      padding: 100px 20px;
+      padding: 180px 20px 120px 20px;
+      position: relative;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: 3rem;
+      text-shadow: 0 6px 8px rgba(0,0,0,0.13);
+      position: absolute;
+      top: 32px;
+      left: 40px;
+      text-align: left;
+    }
+
+    .hero p {
+      margin-top: 8px;
+      font-size: 1.1rem;
+      margin-bottom: 24px;
+      position: absolute;
+      top: 90px;
+      left: 40px;
+      width: max-content;
+      text-align: left;
     }
 
     .hero h2 {
       font-size: 2.5rem;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
+      margin-top: 100px;
     }
 
-    .hero p {
+    .hero p2 {
       font-size: 1.2rem;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
+      display: block;
     }
 
     .btn {
@@ -72,19 +80,85 @@
       padding: 20px;
       font-size: 0.9rem;
     }
+
+    .conctact {
+      color: rgb(0, 0, 0);
+      text-align: center;
+      font-size: 1.5rem;
+       padding: 20px;
+    }
+
+    #viewer {
+      color: #000000;
+      background: linear-gradient(0deg, #ffdbcbf3 60%, #ffdbcbf3 100%);
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+
+      margin: 40px auto 32px auto;
+      padding: 48px 24px 36px 24px;
+    }
+
+    #viewer h2 {
+      font-size: 2.3rem;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+      font-weight: 700;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.13);
+    }
+
+    #viewer p {
+      font-size: 1.25rem;
+      margin-bottom: 28px;
+      font-weight: 400;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.10);
+    }
+
+    #viewer iframe {
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+    }
+
+    section#highlights {
+      background-color: #ffdbcbf3;
+  
+    }
+
+    section#highlights h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    section#highlights p {
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+      color: #555;
+    }
+
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .highlight-item {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
   </style>
 </head>
 <body>
-
-  <header>
-    <h1>आशिर्वाद अपार्टमेंट</h1>
-    <p>Luxury Apartments in the Heart of the City</p>
-  </header>
-
   <div class="hero">
-    <h2>Your Dream Home Awaits</h2>
-    <p>2 & 3 BHK | Gated Community | Rooftop Garden | 24x7 Security</p>
-    <a href="#viewer" class="btn">Explore in 3D</a>
+    <h1>आशिर्वाद अपार्टमेंट</h1>
+    <p style="font-size:1.1rem; margin-top:8px; position:absolute; top:90px; left:40px; width:max-content; text-align:left;">तुमच्या स्वप्नातल्या घराचा नवीन पत्ता !! </p>
+    <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%;">
+      <h2>2BHK LUXURY Flats</h2>
+      <p2>"घर म्हणजे चार भिंती नव्हे, तेथे असतात आई-बाबांचे आशीर्वाद, ज्यांनी उभं केलं आपल्या आयुष्याचं घरकुल."</p2>
+    </div>
   </div>
 
   <section id="viewer">
@@ -93,39 +167,32 @@
     <iframe src="../src/main-ext.html" title="3D Viewer"></iframe>
   </section>
 
-<section style="background-color: #f4f4f4;">
-  <h2 style="font-size: 2rem; margin-bottom: 10px;">Project Highlights</h2>
-  <p style="font-size: 1.1rem; margin-bottom: 30px; color: #555;">Top features that make Skyline Heights your perfect home</p>
+<section id="highlights">
+  <h2>Project Highlights</h2>
+  <p>Top features that make Aashirwad apartment your perfect home</p>
   
-  <div style="
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 20px;
-  ">
-    <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
-      🏊‍♂️ <strong>Swimming Pool</strong><br/>
-      Enjoy a relaxing dip anytime
+  <div class="highlight-grid">
+    <div class="highlight-item">
+      🏊‍♂️ <strong>RCC Structure</strong><br/>
+      We bring Comfort by providing a strong foundation
     </div>
-    <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
-      🏋️‍♀️ <strong>Fully Equipped Gym</strong><br/>
-      Stay fit without leaving home
+    <div class="highlight-item">
+      🚗 <strong>Parking Spaces</strong><br/>
+      Ample parking for residents and guests
     </div>
-    <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+    <div class="highlight-item">
       👶 <strong>Children's Play Area</strong><br/>
       Safe and fun outdoor space
     </div>
-    <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+    <div class="highlight-item">
       🔋 <strong>24x7 Power Backup</strong><br/>
       Never worry about power cuts
     </div>
-    <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+    <div class="highlight-item">
       📱 <strong>Smart Home Features</strong><br/>
       Control lights, fans & security from your phone
     </div>
-    <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+    <div class="highlight-item">
       🌳 <strong>Rooftop Garden</strong><br/>
       Serene views and fresh air every day
     </div>
@@ -134,13 +201,14 @@
 
 
   <section>
-    <h2>Book a Site Visit Today</h2>
-    <p>Call us at <strong>+91 98765 43210</strong> or email <strong>sales@skylineheights.com</strong></p>
-    <a href="mailto:sales@skylineheights.com" class="btn">Contact Us</a>
+    <div class="conctact">
+      <h2>Book a Site Visit Today</h2>
+      <p>For inquiries, bookings, or site visits, reach out to us:</p>
+      <p>Call us at <strong>+91 9822171030</strong> or <strong>+919552538121 </strong></p>
   </section>
 
   <div class="footer">
-    &copy; 2025 Skyline Heights. All rights reserved.
+    &copy; 2025 Yog Construction with . All rights reserved.
   </div>
 
 </body>

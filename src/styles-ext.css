@@ -10,7 +10,7 @@ body {
     left: 40px;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(26, 45, 90, 0.9); /* Navy blue semi-transparent */
+    background-color: #fe9148f3; /* Navy blue semi-transparent */
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -19,7 +19,7 @@ body {
 }
 
 .floorBtn {
-    background-color: #1a2d5a; /* Navy blue */
+    background-color: #fe9148f3; /* Navy blue */
     color: white;
     border: none;
     padding: 15px 20px; /* Bigger buttons */
@@ -31,7 +31,7 @@ body {
 }
 
 .floorBtn:hover {
-    background-color: #2b447a;
+    background-color: #000000;
 }
 
 /* If more than 5 floors, enable scrolling */
@@ -64,19 +64,81 @@ body {
   }
 }
 
+/* Mobile styles (screen width 700px and below) */
+@media (max-width: 700px) {
+  #floorPanel {
+    position: fixed;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fe9148f3;
+    border-radius: 30px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+    padding: 6px 8px;
+    z-index: 1000;
+    width: 96vw;
+    min-width: 0;
+    max-width: 99vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #fe9148f3 #eee;
+    justify-content: space-between;
+  }
+  #floorPanel::-webkit-scrollbar {
+    height: 6px;
+  }
+  #floorPanel::-webkit-scrollbar-thumb {
+    background: #fe9148f3;
+    border-radius: 3px;
+  }
+  #floorPanel::-webkit-scrollbar-track {
+    background: #eee;
+  }
+  .floorBtn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding: 8px 14px;
+    border-radius: 20px;
+    margin: 0 2px;
+    box-shadow: none;
+    transition: background 0.2s, color 0.2s;
+    min-width: 60px;
+    white-space: nowrap;
+    flex: 1 1 0;
+    text-align: center;
+  }
+  .floorBtn:active, .floorBtn.selected {
+    background: #fff;
+    color: #fe9148f3;
+  }
+}
+
 /* Right-side floor options panel */
 #floorOptionsPanel {
   position: fixed;
-    display: none;
+  display: none;
   top: 50%;
   right: 20px;
   transform: translateY(-50%);
-  background-color: rgba(26, 45, 90, 0.9); /* Navy blue semi-transparent */
+  background-color:    #fe9148f3;
+ /* Navy blue semi-transparent */
   padding: 10px;
   flex-direction: column;
   gap: 5px;
   overflow-y: auto;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#floorOptionsPanel.active {
+  display: flex !important;
 }
 
 #floorOptionsPanel h4 {
@@ -159,4 +221,68 @@ cursor: pointer;
 
 #walkthroughBtn:hover {
   background-color: #444;
+}
+
+/* Mobile styles (screen width 700px and below) */
+@media (max-width: 700px) {
+  #floorOptionsPanel {
+    position: fixed;
+    right: 8px;
+    bottom: 8px;
+    left: auto;
+    top: auto;
+    transform: none;
+    background-color: #fe9148f3;
+    border-radius: 30px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+    padding: 6px 6px 6px 6px;
+    z-index: 1000;
+    width: auto;
+    min-width: unset;
+    max-width: 98vw;
+    display: none;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    justify-content: flex-start;
+  }
+  #floorOptionsPanel.active {
+    display: flex !important;
+  }
+  #floorOptionsPanel h4 {
+    display: none;
+  }
+  #floorOptionsPanel button {
+    width: auto;
+    min-width: unset;
+    max-width: 90vw;
+    padding: 6px 8px;
+    border-radius: 16px;
+    margin: 2px 0;
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: #fff;
+    background: none;
+    border: none;
+    box-shadow: none;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+    text-align: center;
+  }
+  #floorOptionsPanel button:active, #floorOptionsPanel button.selected {
+    background: #fff;
+    color: #fe9148f3;
+  }
+  #floorOptionsPanel::-webkit-scrollbar {
+    width: 4px;
+  }
+  #floorOptionsPanel::-webkit-scrollbar-thumb {
+    background: #fe9148f3;
+    border-radius: 2px;
+  }
+  #floorOptionsPanel::-webkit-scrollbar-track {
+    background: #eee;
+  }
 }
