@@ -26,16 +26,9 @@
        <button class="floorBtn" onclick="showFloorOptions(2)" >1st</button>
        <button class="floorBtn" onclick="showFloorOptions(1)" >G</button>
     </div>
-    <div id="floorOptionsPanel">
+    <div id="floorOptionsPanel" style="display: none;">
       <h4 id="floorLabel" style="color: white; font-size: 18px;">View Apartments</h4>
-      <button class="floorBtn" onclick="showApartmentPopup('A-102', '2 BHK', '1200 sqft')">Apartment 1</button><br>
-      <button class="floorBtn" onclick="showApartmentPopup('A-202', '2 BHK', '1600 sqft')">Apartment 2</button><br>
-      <button class="floorBtn" onclick="showApartmentPopup('A-302', '2 BHK', '1200 sqft')">Apartment 3</button><br>
-      <button class="floorBtn" onclick="showApartmentPopup('A-402', '2 BHK', '1650 sqft')">Apartment 4</button><br>
-      <button class="floorBtn" onclick="showApartmentPopup('A-502', '2 BHK', '1650 sqft')">Apartment 5</button><br>
-      <button class="floorBtn" onclick="showApartmentPopup('A-602', '2 BHK', '1650 sqft')">Apartment 6</button><br>
-      <button class="floorBtn" onclick="showApartmentPopup('A-702', '2 BHK', '1650 sqft')">Apartment 7</button><br>
-      <button class="floorBtn" onclick="showApartmentPopup('A-802', '2 BHK', '1650 sqft')">Apartment 8</button><br>
+      <div class="apartment-btns"></div>
       <button class="floorBtn" onclick="hideFloorOptions()">Close</button>
     </div>
         <!-- Popup (Hidden by Default) -->
@@ -50,27 +43,35 @@
     <h2 id="model-name" style="position: absolute; color: white; padding: 10px;"></h2>
     <script type="module" src="script.js"></script>
     <script>
-            let selectedApartmentId = '';
-    
-          function showApartmentPopup(id, type, size) {
-            selectedApartmentId = id;
-            document.getElementById('apartment-id').textContent = `Apartment ${id}`;
-            document.getElementById('apartment-info').textContent = `${type}, ${size}`;
-            document.getElementById('apartment-popup').style.display = 'block';
-          }
-        
-          function closePopup() {
-            document.getElementById('apartment-popup').style.display = 'none';
-          }
-            
-          function openApartmentPage(apartmentId) {
-            // Pass the ID via URL
-            window.location.href = `apartment360.html?id=${apartmentId}`;
-          }
+      
+document.addEventListener('DOMContentLoaded', function() {
+  let selectedApartmentId = '';
 
-          function openApartment2DPage(apartmentId) {
-             window.location.href = `2D_view.html?id=${apartmentId}`;
-          }
+  window.showApartmentPopup = function(id, type, size, floorNumber) {
+    selectedApartmentId = id;
+    document.getElementById('apartment-id').textContent = `Apartment ${id}`;
+    document.getElementById('apartment-info').textContent = `${type}, ${size}` + (floorNumber ? `, Floor: ${floorNumber}` : '');
+    document.getElementById('apartment-popup').style.display = 'block';
+  };
+
+  window.closePopup = function() {
+    document.getElementById('apartment-popup').style.display = 'none';
+  };
+
+  window.openApartmentPage = function(apartmentId) {
+    window.location.href = `apartment360.html?id=${apartmentId}`;
+  };
+
+  window.openApartment2DPage = function(apartmentId) {
+    window.location.href = `2D_view.html?id=${apartmentId}`;
+  };
+
+
+
+  window.hideFloorOptions = function() {
+    document.getElementById('floorOptionsPanel').style.display = 'none';
+  };
+});
     </script>
 </body>
 </html>

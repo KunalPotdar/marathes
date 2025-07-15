@@ -286,3 +286,23 @@ cursor: pointer;
     background: #eee;
   }
 }
+
+.apartmentBtn {
+  width: 100%;
+  padding: 6px 10px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  background-color: #fe9148f3;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: background 0.2s, color 0.2s;
+  white-space: wrap;
+  text-align: left;
+}
+.apartmentBtn:hover, .apartmentBtn:active {
+  background: #fff;
+  color: #fe9148f3;
+}

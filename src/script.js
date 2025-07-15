@@ -158,28 +158,40 @@ function highlightApartment(aptNumber) {
     }
 }
 
-
-
 window.showFloorOptions = function(floorNumber) {
-   floorOptionsOpen = true;
   highlightFloor(floorNumber);
-  const panel = document.getElementById("floorOptionsPanel");
-  const label = document.getElementById("floorLabel");
-
+  const panel = document.getElementById('floorOptionsPanel');
+  const label = document.getElementById('floorLabel');
   label.textContent = `Apartments on ${floorNumber}`;
-  panel.style.display = "block";
+  panel.style.display = 'block';
+  const btnContainer = panel.querySelector('.apartment-btns');
+  btnContainer.innerHTML = '';
+  let aptCount = 8; // Change as needed
+  for (let aptIdx = 1; aptIdx <= aptCount; aptIdx++) {
+    const aptNum = `${floorNumber}0${aptIdx}`;
+    const btn = document.createElement('button');
+    btn.className = 'floorBtn apartmentBtn';
+    btn.textContent = `A- ${aptNum}`;
+    btn.style.width = '120px';
+    btn.style.display = 'block';
+    btn.style.textAlign = 'center'; // Center text
+    btn.onclick = function() {
+      window.showApartmentPopup(`A-${aptNum}`, '2 BHK', '1200 sqft', floorNumber);
+    };
+    btnContainer.appendChild(btn);
+  }
 };
 
 window.hideFloorOptions = function () {
-  floorOptionsOpen = false;
   document.getElementById("floorOptionsPanel").style.display = "none";
   resetHighlight();
 };
 
-function maybeResetHighlight() {
-  if (!floorOptionsOpen) {
-    resetHighlight();
-  }
+window.showApartmentPopup = function(id, type, size, floorNumber) {
+  selectedApartmentId = id;
+  document.getElementById('apartment-id').textContent = `Apartment ${id}`;
+  document.getElementById('apartment-info').textContent = `${type}, ${size}` + (floorNumber ? `, Floor: ${floorNumber}` : '');
+  document.getElementById('apartment-popup').style.display = 'block';
 }
 
 // Responsive Canvas
@@ -304,21 +316,11 @@ function resetHighlight() {
     });
 }
 
-window.showFloorOptions = function(floorNumber) {
-  highlightFloor(floorNumber);
-  const panel = document.getElementById("floorOptionsPanel");
-  const label = document.getElementById("floorLabel");
-
-  label.textContent = `Apartments on ${floorNumber}`;
-  panel.style.display = "block";
-};
 
 window.hideFloorOptions = function () {
   document.getElementById("floorOptionsPanel").style.display = "none";
   resetHighlight();
 };
-
-
 
 
 // Responsive Canvas
