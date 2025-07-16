@@ -42,6 +42,7 @@
     <canvas id="threejsCanvas"></canvas>
     <h2 id="model-name" style="position: absolute; color: white; padding: 10px;"></h2>
     <script type="module" src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <script>
       
 document.addEventListener('DOMContentLoaded', function() {
@@ -49,8 +50,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
   window.showApartmentPopup = function(id, type, size, floorNumber) {
     selectedApartmentId = id;
+    console.log(id);
+    let info = '';
+    if (apartmentData[id]) {
+      // Extract and display categorized info
+      const row = apartmentData[id];
+      // Adjust these keys to match your Excel headers exactly
+      const flatNumber = row['Flat Number'] || id;
+      const flatType = row['__EMPTY_1'] || row['Flat Type'] || '';
+      const carpetArea = row['Carpet Area'] || row['__EMPTY_2'];
+      const builtupArea = row['Builtup Area'] || row['__EMPTY_3'];
+      const status = row['Available Status'] || row['Status'] || row['__EMPTY_4'] || '';
+      info = `<div style='line-height:1.7;'>` +
+        `<div><strong>Flat:</strong> ${flatNumber}</div>` +
+        (flatType ? `<div><strong>Type:</strong> ${flatType}</div>` : '') +
+        (carpetArea ? `<div><strong>Carpet Area:</strong> ${carpetArea}</div>` : '') +
+        (builtupArea ? `<div><strong>Builtup Area:</strong> ${builtupArea}</div>` : '') +
+        (status ? `<div><strong>Status:</strong> ${status}</div>` : '') +
+        `</div>`;
+      console.log('apartmentDataInfo for', id, row);
+    } else {
+      info = `${type}, ${size}` + (floorNumber ? `, Floor: ${floorNumber}` : '');
+      console.log('No apartmentDataInfo for', id);
+    }
     document.getElementById('apartment-id').textContent = `Apartment ${id}`;
-    document.getElementById('apartment-info').textContent = `${type}, ${size}` + (floorNumber ? `, Floor: ${floorNumber}` : '');
+    document.getElementById('apartment-info').innerHTML = info;
     document.getElementById('apartment-popup').style.display = 'block';
   };
 
@@ -72,6 +96,27 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('floorOptionsPanel').style.display = 'none';
   };
 });
+
+let apartmentData = {};
+
+async function fetchAndParseExcelFromS3(url) {
+  const response = await fetch(url);
+  const arrayBuffer = await response.arrayBuffer();
+  const workbook = XLSX.read(arrayBuffer, { type: 'array' });
+  const sheetName = workbook.SheetNames[0];
+  const sheet = workbook.Sheets[sheetName];
+  const json = XLSX.utils.sheet_to_json(sheet);
+  apartmentData = {};
+  json.forEach(row => {
+    // Get the first property name (apartment ID column)
+    const keys = Object.keys(row);
+    const aptId = row[keys[0]];
+    apartmentData[aptId] = row;
+  });
+}
+
+// Call this once on page load (replace with your S3 URL)
+fetchAndParseExcelFromS3('https://apt-hsim-models.s3.eu-west-3.amazonaws.com/aashirwadflats.xlsx');
     </script>
 </body>
 </html>

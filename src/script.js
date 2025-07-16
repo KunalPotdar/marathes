@@ -176,7 +176,7 @@ window.showFloorOptions = function(floorNumber) {
     btn.style.display = 'block';
     btn.style.textAlign = 'center'; // Center text
     btn.onclick = function() {
-      window.showApartmentPopup(`A-${aptNum}`, '2 BHK', '1200 sqft', floorNumber);
+      window.showApartmentPopup(aptNum, '2 BHK', '1200 sqft', floorNumber);
     };
     btnContainer.appendChild(btn);
   }
