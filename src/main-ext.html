@@ -61,12 +61,11 @@ document.addEventListener('DOMContentLoaded', function() {
       const row = apartmentData[id];
       // Adjust these keys to match your Excel headers exactly
       const flatNumber = row['Flat Number'] || id;
-      const flatType = row['__EMPTY_1'] || row['Flat Type'] || '';
-      const carpetArea = row['Carpet Area'] || row['__EMPTY_2'];
-      const builtupArea = row['Builtup Area'] || row['__EMPTY_3'];
+      const flatType = row['__EMPTY_1'] || row['Type of Flat'] || '';
+      const carpetArea = row['Carpet Area(sq.ft.)'] || row['__EMPTY_2'];
+      const builtupArea = row['Built up area(sq.ft.)'] || row['__EMPTY_3'];
       const status = row['Available Status'] || row['Status'] || row['__EMPTY_4'];
       tdplan = row['2DPlan'] || row['__EMPTY_5'] || '';
-      console.log('2D Plan:', tdplan);
       info = `<div style='line-height:1.7;'>` +
         `<div><strong>Flat:</strong> ${flatNumber}</div>` +
         (flatType ? `<div><strong>Type:</strong> ${flatType}</div>` : '') +
@@ -75,7 +74,6 @@ document.addEventListener('DOMContentLoaded', function() {
         (status ? `<div><strong>Status:</strong> ${status}</div>` : '') +
         `<div style='margin-top:10px;'><button id="view-2d-btn" style="padding:6px 16px;border-radius:6px;background:#1a2d5a;color:#fff;border:none;cursor:pointer;">View 2D Floor Plan</button></div>` +
         `</div>`;
-      console.log('apartmentDataInfo for', id, row);
     } else {
       info = `${type}, ${size}` + (floorNumber ? `, Floor: ${floorNumber}` : '');
       console.log('No apartmentDataInfo for', id);
