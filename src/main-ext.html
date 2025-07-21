@@ -36,8 +36,9 @@
           <span class="close" onclick="closePopup()">&times;</span>
           <h3 id="apartment-id"></h3>
           <p id="apartment-info"></p>
-          <button onclick="openApartmentPage('A')">3D Immersive Walkthrough</button>
-          <button onclick="openApartment2DPage('A')">2D Floor Plan</button>   
+          
+          <button onclick="openApartment2DPage(selectedApartmentId)">3D Floor Plan</button>   
+          <button onclick="openApartmentPage(selectedApartmentId)">3D Walkthrough</button>
        </div>
     <canvas id="threejsCanvas"></canvas>
     <h2 id="model-name" style="position: absolute; color: white; padding: 10px;"></h2>
@@ -45,13 +46,16 @@
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <script>
       
-document.addEventListener('DOMContentLoaded', function() {
-  let selectedApartmentId = '';
 
-  window.showApartmentPopup = function(id, type, size, floorNumber) {
+// Make selectedApartmentId global so it is accessible from inline HTML onclick
+window.selectedApartmentId = '';
+document.addEventListener('DOMContentLoaded', function() {
+
+  window.showApartmentPopup = function(id) {
     selectedApartmentId = id;
     console.log(id);
     let info = '';
+    let tdplan = '';
     if (apartmentData[id]) {
       // Extract and display categorized info
       const row = apartmentData[id];
@@ -60,13 +64,16 @@ document.addEventListener('DOMContentLoaded', function() {
       const flatType = row['__EMPTY_1'] || row['Flat Type'] || '';
       const carpetArea = row['Carpet Area'] || row['__EMPTY_2'];
       const builtupArea = row['Builtup Area'] || row['__EMPTY_3'];
-      const status = row['Available Status'] || row['Status'] || row['__EMPTY_4'] || '';
+      const status = row['Available Status'] || row['Status'] || row['__EMPTY_4'];
+      tdplan = row['2DPlan'] || row['__EMPTY_5'] || '';
+      console.log('2D Plan:', tdplan);
       info = `<div style='line-height:1.7;'>` +
         `<div><strong>Flat:</strong> ${flatNumber}</div>` +
         (flatType ? `<div><strong>Type:</strong> ${flatType}</div>` : '') +
         (carpetArea ? `<div><strong>Carpet Area:</strong> ${carpetArea}</div>` : '') +
         (builtupArea ? `<div><strong>Builtup Area:</strong> ${builtupArea}</div>` : '') +
         (status ? `<div><strong>Status:</strong> ${status}</div>` : '') +
+        `<div style='margin-top:10px;'><button id="view-2d-btn" style="padding:6px 16px;border-radius:6px;background:#1a2d5a;color:#fff;border:none;cursor:pointer;">View 2D Floor Plan</button></div>` +
         `</div>`;
       console.log('apartmentDataInfo for', id, row);
     } else {
@@ -76,6 +83,13 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('apartment-id').textContent = `Apartment ${id}`;
     document.getElementById('apartment-info').innerHTML = info;
     document.getElementById('apartment-popup').style.display = 'block';
+    // Set the button's onclick handler with the correct tdplan value
+    const view2dBtn = document.getElementById('view-2d-btn');
+    if (view2dBtn) {
+      view2dBtn.onclick = () => {
+        openApartment2DPage(tdplan);
+      };
+    }
   };
 
   window.closePopup = function() {
@@ -87,7 +101,36 @@ document.addEventListener('DOMContentLoaded', function() {
   };
 
   window.openApartment2DPage = function(apartmentId) {
-    window.location.href = `2D_view.html?id=${apartmentId}`;
+    // Show 2D floor plan as a popup overlay
+    let overlay = document.getElementById('apartment-2d-overlay');
+    console.log('Opening 2D view for apartment:', apartmentId);
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.id = 'apartment-2d-overlay';
+      overlay.style.position = 'fixed';
+      overlay.style.top = '0';
+      overlay.style.left = '0';
+      overlay.style.width = '100vw';
+      overlay.style.height = '100vh';
+      overlay.style.background = 'rgba(0,0,0,0.7)';
+      overlay.style.display = 'flex';
+      overlay.style.alignItems = 'center';
+      overlay.style.justifyContent = 'center';
+      overlay.style.zIndex = '2000';
+      overlay.innerHTML = `
+        <div style="background:#fff; padding:0; border-radius:12px; max-width:90vw; max-height:90vh; position:relative; box-shadow:0 8px 32px rgba(0,0,0,0.25);">
+          <span id="close-2d-overlay" style="position:absolute;top:8px;right:16px;cursor:pointer;font-size:24px;font-weight:bold;z-index:10;">&times;</span>
+          <iframe src="2D_view.html?id=${apartmentId}" style="width:80vw; height:75vh; border:none; border-radius:8px; display:block;"></iframe>
+        </div>
+      `;
+      document.body.appendChild(overlay);
+      document.getElementById('close-2d-overlay').onclick = function() {
+        overlay.remove();
+      };
+    } else {
+      document.getElementById('apartment-2d-img').src = `2D_view.html?id=${apartmentId}`;
+      overlay.style.display = 'flex';
+    }
   };
 
 
@@ -112,11 +155,13 @@ async function fetchAndParseExcelFromS3(url) {
     const keys = Object.keys(row);
     const aptId = row[keys[0]];
     apartmentData[aptId] = row;
+    console.log('Parsed apartment data for ID:', aptId, row);
   });
 }
 
 // Call this once on page load (replace with your S3 URL)
 fetchAndParseExcelFromS3('https://apt-hsim-models.s3.eu-west-3.amazonaws.com/aashirwadflats.xlsx');
+
     </script>
 </body>
 </html>

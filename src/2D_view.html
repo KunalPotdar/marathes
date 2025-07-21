@@ -21,10 +21,9 @@
   <script>
     const params = new URLSearchParams(window.location.search);
     const aptId = params.get('id'); // e.g., A-102
-
     if (aptId) {
-      document.getElementById('title').textContent = `2D Floor Plan for ${aptId}`;
-      document.getElementById('floor-image').src = `client/project2/apts/A-102.png`;
+      document.getElementById('title').textContent = `2D Floor Plan`;
+      document.getElementById('floor-image').src = `https://apt-hsim-models.s3.eu-west-3.amazonaws.com/apts/${aptId}.jpg`;
     }
   </script>
 </body>

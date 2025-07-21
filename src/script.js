@@ -176,7 +176,7 @@ window.showFloorOptions = function(floorNumber) {
     btn.style.display = 'block';
     btn.style.textAlign = 'center'; // Center text
     btn.onclick = function() {
-      window.showApartmentPopup(aptNum, '2 BHK', '1200 sqft', floorNumber);
+     window.showApartmentPopup(aptNum);
     };
     btnContainer.appendChild(btn);
   }
@@ -186,13 +186,6 @@ window.hideFloorOptions = function () {
   document.getElementById("floorOptionsPanel").style.display = "none";
   resetHighlight();
 };
-
-window.showApartmentPopup = function(id, type, size, floorNumber) {
-  selectedApartmentId = id;
-  document.getElementById('apartment-id').textContent = `Apartment ${id}`;
-  document.getElementById('apartment-info').textContent = `${type}, ${size}` + (floorNumber ? `, Floor: ${floorNumber}` : '');
-  document.getElementById('apartment-popup').style.display = 'block';
-}
 
 // Responsive Canvas
 
