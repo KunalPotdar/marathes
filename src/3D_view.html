@@ -15,15 +15,15 @@
   </style>
 </head>
 <body>
-  <h2 id="title">2D Floor Plan</h2>
+  <h2 id="title">3D Floor Plan</h2>
   <img id="floor-image" src="" alt="2D Floor Plan">
   
   <script>
     const params = new URLSearchParams(window.location.search);
     const aptId = params.get('id'); // e.g., A-102
     if (aptId) {
-      document.getElementById('title').textContent = `2D Floor Plan of an Apartment`;
-      document.getElementById('floor-image').src = `https://apt-hsim-models.s3.eu-west-3.amazonaws.com/apts/${aptId}.jpg`;
+      document.getElementById('title').textContent = `3D Floor Plan`;
+      document.getElementById('floor-image').src = `https://apt-hsim-models.s3.eu-west-3.amazonaws.com/apts/3D_plan.jpg`;
     }
   </script>
 </body>

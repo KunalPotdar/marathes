@@ -36,8 +36,6 @@
           <span class="close" onclick="closePopup()">&times;</span>
           <h3 id="apartment-id"></h3>
           <p id="apartment-info"></p>
-          
-          <button onclick="openApartment2DPage(selectedApartmentId)">3D Floor Plan</button>   
           <button onclick="openApartmentPage(selectedApartmentId)">3D Walkthrough</button>
        </div>
     <canvas id="threejsCanvas"></canvas>
@@ -72,7 +70,9 @@ document.addEventListener('DOMContentLoaded', function() {
         (carpetArea ? `<div><strong>Carpet Area:</strong> ${carpetArea}</div>` : '') +
         (builtupArea ? `<div><strong>Builtup Area:</strong> ${builtupArea}</div>` : '') +
         (status ? `<div><strong>Status:</strong> ${status}</div>` : '') +
-        `<div style='margin-top:10px;'><button id="view-2d-btn" style="padding:6px 16px;border-radius:6px;background:#1a2d5a;color:#fff;border:none;cursor:pointer;">View 2D Floor Plan</button></div>` +
+        (`<div style='margin-top:10px;'><button id="view-2d-btn" style="padding:6px 16px;border-radius:6px;background:#1a2d5a;color:#fff;border:none;cursor:pointer;">View 2D Floor Plan</button></div>` +
+        `</div>`) +
+        `<div style='margin-top:10px;'><button id="view-3d-btn" style="padding:6px 16px;border-radius:6px;background:#1a2d5a;color:#fff;border:none;cursor:pointer;">View 3D Floor Plan</button></div>` +
         `</div>`;
     } else {
       info = `${type}, ${size}` + (floorNumber ? `, Floor: ${floorNumber}` : '');
@@ -86,6 +86,13 @@ document.addEventListener('DOMContentLoaded', function() {
     if (view2dBtn) {
       view2dBtn.onclick = () => {
         openApartment2DPage(tdplan);
+      };
+    }
+
+    const view3dBtn = document.getElementById('view-3d-btn');
+    if (view3dBtn) {
+      view3dBtn.onclick = () => {
+        openApartment3DPage(tdplan);
       };
     }
   };
@@ -127,6 +134,39 @@ document.addEventListener('DOMContentLoaded', function() {
       };
     } else {
       document.getElementById('apartment-2d-img').src = `2D_view.html?id=${apartmentId}`;
+      overlay.style.display = 'flex';
+    }
+  };
+
+  window.openApartment3DPage = function(apartmentId) {
+    // Show 2D floor plan as a popup overlay
+    let overlay = document.getElementById('apartment-3d-overlay');
+    console.log('Opening 3D view for apartment:', apartmentId);
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.id = 'apartment-3d-overlay';
+      overlay.style.position = 'fixed';
+      overlay.style.top = '0';
+      overlay.style.left = '0';
+      overlay.style.width = '100vw';
+      overlay.style.height = '100vh';
+      overlay.style.background = 'rgba(0,0,0,0.7)';
+      overlay.style.display = 'flex';
+      overlay.style.alignItems = 'center';
+      overlay.style.justifyContent = 'center';
+      overlay.style.zIndex = '2000';
+      overlay.innerHTML = `
+        <div style="background:#fff; padding:0; border-radius:12px; max-width:90vw; max-height:90vh; position:relative; box-shadow:0 8px 32px rgba(0,0,0,0.25);">
+          <span id="close-2d-overlay" style="position:absolute;top:8px;right:16px;cursor:pointer;font-size:24px;font-weight:bold;z-index:10;">&times;</span>
+          <iframe src="3D_view.html?id=${apartmentId}" style="width:80vw; height:75vh; border:none; border-radius:8px; display:block;"></iframe>
+        </div>
+      `;
+      document.body.appendChild(overlay);
+      document.getElementById('close-2d-overlay').onclick = function() {
+        overlay.remove();
+      };
+    } else {
+      document.getElementById('apartment-2d-img').src = `3D_view.html?id=${apartmentId}`;
       overlay.style.display = 'flex';
     }
   };
