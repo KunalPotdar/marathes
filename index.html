@@ -5,6 +5,105 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Yog Construction</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Header Styles */
+    .top-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1em 2em;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      position: relative;
+    }
+    .logo-group .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .logo-group .logo img {
+      height: 45px;
+      width: auto;
+    }
+    #mainNav ul {
+      display: flex;
+      gap: 1.5em;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      transition: all 0.3s ease;
+    }
+    #mainNav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-size: 1em;
+      padding: 0.5em 0.8em;
+      transition: all 0.3s ease;
+      border-radius: 4px;
+    }
+    #mainNav ul li a:hover {
+      color: #ff9800;
+      background: rgba(255,152,0,0.1);
+    }
+    .nav-button {
+      text-decoration: none;
+      background: #ff9800;
+      color: white !important;
+      padding: 0.6em 1.3em;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+    }
+    .nav-button:hover {
+      background: #f57c00 !important;
+      transform: translateY(-1px);
+    }
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.8em;
+      color: #ff9800;
+      cursor: pointer;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 900px) {
+      .top-header { padding: 0.8em 1.5em; }
+      #mainNav ul { gap: 0.8em; }
+      #mainNav ul li a { font-size: 0.9em; }
+    }
+    
+    @media (max-width: 768px) {
+      .menu-toggle { display: block; }
+      #mainNav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        padding: 1em;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: all 0.3s ease-in-out;
+        pointer-events: none;
+      }
+      #mainNav.active {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+      #mainNav ul {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8em;
+      }
+      #mainNav ul li { width: 100%; }
+      #mainNav ul li a { display: block; width: 90%; }
+      .nav-button { display: inline-block; width: auto !important; }
+    }
+  </style>
 </head>
 <body>
   <!-- Header + Navigation -->
@@ -15,23 +114,19 @@
         <img src="images/YogLogo.png" alt="Yog Construction Logo" />
       </a>
     </div>
-
+    <nav id="mainNav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#aboutus">About</a></li>
+        <li><a href="#awards">Why Choose us ?</a></li>
+        <li><a href="#contactus" class="nav-button">Contact Us</a></li>
+      </ul>
+    </nav>
     <!-- Hamburger for Mobile -->
     <button class="menu-toggle" id="menuToggle">&#9776;</button>
-     <!-- Navigation -->
-  <nav id="mainNav">
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="#aboutus">About</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#awards">Awards</a></li>
-      <li><a href="#contactus" class="nav-button">Contact Us</a></li>
-    </ul>
-  </nav>
   </div>
-
- 
 </header>
 
   <!-- Hero Section -->
@@ -105,27 +200,41 @@
   </section>
 
   <!-- About Preview -->
-  <section  id="aboutus"  class="about-overview">
-    <div class="container">
-      <h2>About Us</h2>
-      <p>With over 20 years in the building industry, we pride ourselves on delivering excellent craftsmanship and client satisfaction.</p>
-      <a href="about.html" class="btn">Learn More</a>
+  <section id="aboutus" class="about-overview">
+    <div class="container" style="max-width:700px; margin:0 auto; text-align:center;">
+      <h2 style="text-align:center; margin-bottom:1em;">About Us</h2>
+      <div style="margin-bottom:2em;">
+        <h3 style="color:#ff9800; margin-bottom:0.7em;">Our Legacy of Excellence</h3>
+        <p style="font-size:1.08em; line-height:1.7; color:#333; margin-bottom:1em;">For over 25 years, Yog Construction has been shaping the skyline of Dhule with a strong presence in the construction industry. What began as a vision to deliver reliable and high-quality construction has now grown into a trusted name known for excellence, innovation, and customer satisfaction.</p>
+        <p style="font-size:1.08em; line-height:1.7; color:#333; margin-bottom:1em;">We have successfully completed 25+ projects, ranging from residential apartments to commercial spaces, each reflecting our commitment to top-quality craftsmanship and modern design trends.</p>
+        <p style="font-size:1.08em; line-height:1.7; color:#333; margin-bottom:1em;">Expanding our horizon, we have also stepped into the real estate market in Nashik, bringing with us the same dedication and expertise that earned us respect in Dhule.</p>
+      </div>
+      <p style="font-style:italic; color:#666; font-size:1.08em;">Every project is a symbol of durability, functionality, and aesthetics—crafted to meet the evolving lifestyle needs of our clients.</p>
     </div>
   </section>
 
-  <!-- Testimonials -->
-  <section  id="awards" class="awards">
+  <!-- Why Choose Us -->
+  <section id="awards" class="awards">
     <div class="container">
-      <h2>What Clients Say</h2>
-      <div class="testimonial-slider">
-        <blockquote>
-          “Their attention to detail was incredible, and the project was completed on time.”<br>
-          <strong>– Jane Doe</strong>
-        </blockquote>
-        <blockquote>
-          “Professional, reliable, and great communication throughout.”<br>
-          <strong>– John Smith</strong>
-        </blockquote>
+      <h2 style="text-align:center; margin-bottom:1.5em;">Why Choose Us?</h2>
+      <div style="max-width:800px; margin:0 auto;">
+        <div style="text-align:center; margin-bottom:2em;">
+          <h3 style="color:#ff9800; margin-bottom:1em;">Building Trust, Delivering Excellence</h3>
+          <p style="font-size:1.1em; line-height:1.8; color:#333;">At Yog Construction, we don’t just build spaces—we create lasting value. With decades of expertise in both residential and commercial development, we bring together innovation, precision, and reliability to deliver projects that stand the test of time.</p>
+        </div>
+        <div style="background:#f9f9f9; padding:2em; border-radius:12px; margin:2em 0;">
+          <h3 style="color:#333; text-align:center; margin-bottom:1em;">What Sets Us Apart</h3>
+          <ul style="max-width:600px; margin:0 auto; color:#444; line-height:1.8; font-size:1.05em;">
+            <li style="margin-bottom:0.8em;">✓ Seasoned Experts with 25+ years of experience in the industry</li>
+            <li style="margin-bottom:0.8em;">✓ End-to-End Solutions covering design, planning, construction, and delivery</li>
+            <li style="margin-bottom:0.8em;">✓ Customer-First Philosophy, ensuring your vision and comfort come first</li>
+            <li style="margin-bottom:0.8em;">✓ Strict Quality Control & Supervision for flawless execution every time</li>
+            <li style="margin-bottom:0.8em;">✓ 3D Virtual Experience available directly on our website to help clients explore spaces and make faster, more confident decisions</li>
+          </ul>
+        </div>
+        <div style="text-align:center; margin-top:2em;">
+          <p style="font-style:italic; color:#666; font-size:1.1em;">Our focus is always on quality craftsmanship, transparency, and customer satisfaction, making us the preferred choice for families, businesses, and investors alike.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -134,7 +243,20 @@
   <section id="contactus" class="contact-cta">
     <div class="container">
       <h2>Ready to Start Your Project?</h2>
-      <a href="contact.html" class="btn">Contact Us</a>
+      <div class="grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:2.5rem; margin-top:2em;">
+        <div style="background:#fff; border-radius:16px; box-shadow:0 2px 12px rgba(0,0,0,0.07); padding:2rem 1.5rem; text-align:center;">
+          <h3 style="color:#ff9800; margin-bottom:1em;">Address</h3>
+          <p style="color:#555;">Yog Construction,<br>123 Main Road,<br>Dhule, Maharashtra 424001</p>
+        </div>
+        <div style="background:#fff; border-radius:16px; box-shadow:0 2px 12px rgba(0,0,0,0.07); padding:2rem 1.5rem; text-align:center;">
+          <h3 style="color:#ff9800; margin-bottom:1em;">Phone Contact</h3>
+          <p style="color:#555;">+91 98765 43210<br>+91 91234 56789</p>
+        </div>
+        <div style="background:#fff; border-radius:16px; box-shadow:0 2px 12px rgba(0,0,0,0.07); padding:2rem 1.5rem; text-align:center;">
+          <h3 style="color:#ff9800; margin-bottom:1em;">Opening Hours</h3>
+          <p style="color:#555;">Mon - Sat: 9:00 AM - 6:00 PM<br>Sun: Closed</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -143,10 +265,6 @@
     <div class="container">
       <div class="footer-info">
         <p>&copy; 2025 Yog Construction. All rights reserved.</p>
-        <ul class="social">
-          <li><a href="#">LinkedIn</a></li>
-          <li><a href="#">Facebook</a></li>
-        </ul>
         <p style="margin-top:1em; font-size:0.95em;">
           This website is powered by
           <a href="https://www.houseinmeta.com" target="_blank" rel="noopener" style="color:#ff9800; font-weight:bold;">HouseInMeta</a>
@@ -155,8 +273,26 @@
     </div>
   </footer>
    <script>
-  document.getElementById('menuToggle').addEventListener('click', function () {
-    document.getElementById('mainNav').classList.toggle('active');
+  const menuToggle = document.getElementById('menuToggle');
+  const mainNav = document.getElementById('mainNav');
+  
+  menuToggle.addEventListener('click', function (event) {
+    event.stopPropagation();
+    mainNav.classList.toggle('active');
+  });
+
+  // Close menu when clicking a nav link
+  mainNav.addEventListener('click', function() {
+    if (mainNav.classList.contains('active')) {
+      mainNav.classList.remove('active');
+    }
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', function(event) {
+    if (!mainNav.contains(event.target) && !menuToggle.contains(event.target) && mainNav.classList.contains('active')) {
+      mainNav.classList.remove('active');
+    }
   });
 </script>
   <script src="scripts.js"></script>

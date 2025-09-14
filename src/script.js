@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { UltraHDRLoader } from 'three/addons/loaders/UltraHDRLoader.js';
-
+import { Sky } from 'three/addons/objects/Sky.js';
 
 // Get model from URL (either ?model= or #)
 function getModelFromURL() {
@@ -15,11 +15,11 @@ let apartmentBoxes = {}; // Store references to each apartment box
 let floorOptionsOpen = false;
 // Scene, Camera, Renderer setup
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xffffff ); // Sky blue
+
 const aspect = window.innerWidth / window.innerHeight;
 
 const frustumSize = 10;
-// Create an orthographic camera
+// // Create an orthographic camera
 const camera = new THREE.OrthographicCamera(
   -frustumSize * aspect / 2 ,  // left
   frustumSize * aspect / 2,   // right
@@ -29,18 +29,26 @@ const camera = new THREE.OrthographicCamera(
   1000                        // far
 );
 
-camera.position.set(10, 0, 30); // Set camera back along z-axis
+// const fov = 75; // Field of view in degrees (typical values are between 45 and 75)
+
+// const near = 1; // Near clipping plane
+// const far = 1000; // Far clipping plane
+
+// const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+camera.position.set(10, 0, 10); // Zoom out even further (increase x and z values)
 camera.lookAt(0, 0, 0);
 
 
 const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById("threejsCanvas") });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 2;
+renderer.toneMappingExposure = 1.5;
 renderer.shadowMap.enabled = true;
+//renderer.outputColorSpace = THREE.SRGBColorSpace;
 //renderer.outputEncoding = THREE.sRGBEncoding;
 
-  // Controls 
+
+// Controls 
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.enablePan = true;
@@ -79,11 +87,11 @@ const light = new THREE.AmbientLight(0xffffff, 0.7);
 //const hemiLight = new THREE.HemisphereLight(0xffffff, 0x888888, 4.0);
 const hemiLight = new THREE.HemisphereLight(0xfff8e7, 0x080820, 4);
 //const hemiLight = new THREE.HemisphereLight(0xffffff, 0xaaaaaa, 2.0);
-hemiLight.position.set(0, 200, 0);
+hemiLight.position.set(0, 100, 0);
 scene.add(hemiLight);
 
 // Sunlight
-const sunLight = new THREE.DirectionalLight(0xfff8e7, 3.5); // slightly warm sunlight
+const sunLight = new THREE.DirectionalLight(0xffffff, 2.0); // slightly warm sunlight
 sunLight.position.set(100, 200, 100);
 sunLight.castShadow = true;
 sunLight.shadow.bias = -0.0001;
@@ -121,6 +129,28 @@ sunLight.shadow.mapSize.height = 1024*4;;
 
 
 // Post-processing removed
+
+// Remove: scene.background = new THREE.Color(0xffffff); // fallback background
+
+// Sky settings for pink/orange sunset effect
+const sky = new Sky();
+sky.scale.setScalar(450000);
+scene.add(sky);
+
+const uniforms = sky.material.uniforms;
+uniforms['turbidity'].value = 5;        
+uniforms['rayleigh'].value = 2;        // Less blue, more warm
+uniforms['mieCoefficient'].value = 0.02; // More sun haze
+uniforms['mieDirectionalG'].value = 0.85;// More forward scattering
+
+const elevation = 40;    // Lower sun for sunset
+const azimuth = 180;    // Sun direction (west)
+const phi = THREE.MathUtils.degToRad(90 - elevation);
+const theta = THREE.MathUtils.degToRad(azimuth);
+
+const sun = new THREE.Vector3();
+sun.setFromSphericalCoords(1, phi, theta);
+uniforms['sunPosition'].value.copy(sun);
 
 // Animation Loop
 function animate() {
@@ -224,12 +254,23 @@ function loadModel(url) {
     const box = new THREE.Box3().setFromObject(currentModel);
     const center = box.getCenter(new THREE.Vector3());
     currentModel.position.sub(center); // Center the model at the origin
-    scene.add(currentModel);
 
+    // --- Scale model to fit scene ---
+    // const size = box.getSize(new THREE.Vector3());
+    // const maxDim = Math.max(size.x, size.y, size.z);
+    // const desiredSize = 4; // Adjust this value for your scene
+    // if (maxDim > 0) {
+    //   const scale = desiredSize / maxDim;
+    //   currentModel.scale.setScalar(scale);
+    // }
+    // --- End scale ---
+
+    scene.add(currentModel);
     currentModel.traverse((child) => {
       if (child.isMesh) {
        child.castShadow = true; // Enable shadow casting for all meshes
         child.receiveShadow = true; // Enable shadow receiving for all meshes
+       
         if(child.material.map) {
           child.material.map.anisotropy = 16; // Set anisotropy for textures
           child.material.map.encoding = THREE.sRGBEncoding;}
@@ -318,7 +359,11 @@ window.hideFloorOptions = function () {
 
 // Responsive Canvas
 window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
+    const aspect = window.innerWidth / window.innerHeight;
+    camera.left = -frustumSize * aspect / 2;
+    camera.right = frustumSize * aspect / 2;
+    camera.top = frustumSize / 2;
+    camera.bottom = -frustumSize / 2;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
 });
