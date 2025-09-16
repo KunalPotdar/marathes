@@ -161,19 +161,30 @@
     </div>
   </div>
 
-  <section style="padding:60px 20px; ">
-    <div style="max-width:1000px; margin:0 auto;">
-      <h2 style="text-align:center; font-size:2.2rem; margin-bottom:40px; color:#333;">Ashirwad Apartment | 2BHK Flats | Deopur, Dhule</h2>
-      <div style="background:white; padding:32px; border-radius:16px; box-shadow:0 4px 20px rgba(0,0,0,0.1);">
-        <h3 style="color:#ff7e00; margin-bottom:16px; font-size:1.4rem;">Project Overview</h3>
-        <p style="color:#555; line-height:1.8; font-size:1.1rem;">
-          Ashirwad Apartment is a thoughtfully crafted residential project that brings together the best of modern lifestyle and timeless comfort. Offering well-planned 2BHK homes, it combines elegant design with practical functionality to meet the needs of today's families. With its prime location, contemporary amenities, and superior construction quality, Ashirwad Apartment is more than just a home—it's a space designed for comfort, convenience, and long-term value.
-        </p>
+  <section style="padding:60px 20px;">
+  <div style="max-width:1200px; margin:0 auto;">
+     <h2 style="text-align:center; font-size:2.2rem; margin-bottom:40px; color:#333;">Ashirwad Apartment | 2BHK Flats | Deopur, Dhule</h2>
+    <div style="display:flex; flex-wrap:wrap; gap:40px; align-items:stretch;">
+      <div style="flex:1 1 380px; min-width:320px; display:flex; flex-direction:column; justify-content:stretch;">
+        <div style="background:white; padding:32px; border-radius:16px; box-shadow:0 4px 20px rgba(0,0,0,0.1); height:100%;">
+          <h3 style="color:#ff7e00; margin-bottom:16px; font-size:1.4rem;">Project Overview</h3>
+          <p style="color:#555; line-height:1.8; font-size:1.1rem;">
+            Ashirwad Apartment is a thoughtfully crafted residential project that brings together the best of modern lifestyle and timeless comfort. Offering well-planned 2BHK homes, it combines elegant design with practical functionality to meet the needs of today's families. With its prime location, contemporary amenities, and superior construction quality, Ashirwad Apartment is more than just a home—it's a space designed for comfort, convenience, and long-term value.
+          </p>
+        </div>
+      </div>
+      <div style="flex:1 1 380px; min-width:320px; display:flex; flex-direction:column; justify-content:stretch;">
+        <div id="slider" style="position:relative; max-width:100%; margin:0 auto; height:100%;">
+          <img id="slider-img" src="../images/ASHIRWAD_APARTMENT_a.jpg" alt="Aashirwad Apartment Building" style="width:100%; max-height:540px; height:100%; object-fit:cover; border-radius:16px; box-shadow:0 2px 18px rgba(0,0,0,0.15); transition:opacity 0.5s;">
+          <button id="prev-btn" style="position:absolute; top:50%; left:10px; transform:translateY(-50%); background:#fff; border:none; border-radius:50%; width:44px; height:44px; font-size:1.7rem; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,0.13);">&#8592;</button>
+          <button id="next-btn" style="position:absolute; top:50%; right:10px; transform:translateY(-50%); background:#fff; border:none; border-radius:50%; width:44px; height:44px; font-size:1.7rem; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,0.13);">&#8594;</button>
+        </div>
       </div>
     </div>
-  </section>
-
-  <section id="viewer">
+  </div>
+</section>
+  
+<section id="viewer">
     <h2>Interactive 3D Apartment Viewer</h2>
     <p>Walk through your future home virtually!</p>
     <iframe src="../src/main-ext.html" title="3D Viewer"></iframe>
@@ -231,6 +242,8 @@
   </div>
 </section>
 
+
+
   <section>
     <div class="conctact">
       <h2>Book a Site Visit Today</h2>
@@ -244,3 +257,44 @@
 
 </body>
 </html>
+<script>
+  // Slider logic
+  const images = [
+    "../images/ASHIRWAD_APARTMENT_a.jpg",
+    "../images/ASHIRWAD_APARTMENT_b.jpg",
+    "../images/ASHIRWAD_APARTMENT_c.jpg"
+    // Add more images if needed
+  ];
+  let current = 0;
+  const imgEl = document.getElementById('slider-img');
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
+  let timer;
+
+  function showImage(idx) {
+    imgEl.style.opacity = 0.5;
+    setTimeout(() => {
+      imgEl.src = images[idx];
+      imgEl.style.opacity = 1;
+    }, 200);
+    current = idx;
+    resetTimer();
+  }
+
+  function showPrev() {
+    showImage((current - 1 + images.length) % images.length);
+  }
+
+  function showNext() {
+    showImage((current + 1) % images.length);
+  }
+
+  function resetTimer() {
+    clearTimeout(timer);
+    timer = setTimeout(showNext, 10000);
+  }
+
+  prevBtn.onclick = showPrev;
+  nextBtn.onclick = showNext;
+  showImage(0);
+</script>
