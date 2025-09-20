@@ -18,7 +18,7 @@ const scene = new THREE.Scene();
 
 const aspect = window.innerWidth / window.innerHeight;
 
-const frustumSize = 6;
+const frustumSize = 7;
 // // Create an orthographic camera
 const camera = new THREE.OrthographicCamera(
   -frustumSize * aspect / 2 ,  // left
