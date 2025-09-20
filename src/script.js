@@ -18,7 +18,7 @@ const scene = new THREE.Scene();
 
 const aspect = window.innerWidth / window.innerHeight;
 
-const frustumSize = 10;
+const frustumSize = 3;
 // // Create an orthographic camera
 const camera = new THREE.OrthographicCamera(
   -frustumSize * aspect / 2 ,  // left
@@ -35,7 +35,7 @@ const camera = new THREE.OrthographicCamera(
 // const far = 1000; // Far clipping plane
 
 // const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-camera.position.set(10, 0, 10); // Zoom out even further (increase x and z values)
+camera.position.set(7, 0, 7); // Move camera closer for zoomed-in view
 camera.lookAt(0, 0, 0);
 
 
@@ -58,7 +58,8 @@ controls.minZoom = 2.5;
 controls.maxZoom = 8.5;
 controls.minPolarAngle = 1.5; // Prevent looking up too high
 controls.maxPolarAngle = 1.5; // Prevent looking down too low
-controls.autoRotate = false;
+controls.autoRotate = true;   // Enable auto rotation
+controls.autoRotateSpeed = 1.2; // Optional: set rotation speed
 controls.target.set(0, 0, 0); // Ensure this is the model's center
 controls.rotateSpeed = 0.6;   // Lower value for smoother rotation
 controls.update();

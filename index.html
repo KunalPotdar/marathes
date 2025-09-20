@@ -15,6 +15,7 @@
       background: #fff;
       box-shadow: 0 2px 8px rgba(0,0,0,0.06);
       position: relative;
+      z-index: 10; /* Add this line to keep header/menu-toggle above hero-slider */
     }
     .logo-group .logo {
       display: flex;
@@ -203,39 +204,53 @@
 
   <!-- About Preview -->
   <section id="aboutus" class="about-overview">
-    <div class="container" style="max-width:700px; margin:0 auto; text-align:center;">
-      <h2 style="text-align:center; margin-bottom:1em;">About Us</h2>
-      <div style="margin-bottom:2em;">
-        <h3 style="color:#ff9800; margin-bottom:0.7em;">Our Legacy of Excellence</h3>
-        <p style="font-size:1.08em; line-height:1.7; color:#333; margin-bottom:1em;">For over 25 years, Yog Construction has been shaping the skyline of Dhule with a strong presence in the construction industry. What began as a vision to deliver reliable and high-quality construction has now grown into a trusted name known for excellence, innovation, and customer satisfaction.</p>
-        <p style="font-size:1.08em; line-height:1.7; color:#333; margin-bottom:1em;">We have successfully completed 25+ projects, ranging from residential apartments to commercial spaces, each reflecting our commitment to top-quality craftsmanship and modern design trends.</p>
-        <p style="font-size:1.08em; line-height:1.7; color:#333; margin-bottom:1em;">Expanding our horizon, we have also stepped into the real estate market in Nashik, bringing with us the same dedication and expertise that earned us respect in Dhule.</p>
+    <div class="container" style="max-width:900px; margin:0 auto;">
+      <div style="display:flex; flex-wrap:wrap; gap:40px; align-items:stretch;">
+        <div style="flex:1 1 340px; min-width:280px; text-align:left; display:flex; flex-direction:column; justify-content:center;">
+          <h2 style="margin-bottom:0.7em;">About Us</h2>
+          <h3 style="color:#ff9800; margin-bottom:0.5em;">Our Legacy of Excellence</h3>
+          <p style="font-size:1em; line-height:1.5; color:#333; margin-bottom:0.7em;">
+            For over 25 years, Yog Construction has been shaping the skyline of Dhule with a strong presence in the construction industry. What began as a vision to deliver reliable and high-quality construction has now grown into a trusted name known for excellence, innovation, and customer satisfaction.
+          </p>
+          <p style="font-size:1em; line-height:1.5; color:#333; margin-bottom:0.7em;">
+            We have successfully completed 25+ projects, ranging from residential apartments to commercial spaces, each reflecting our commitment to top-quality craftsmanship and modern design trends.
+          </p>
+          <p style="font-size:1em; line-height:1.5; color:#333; margin-bottom:0.7em;">
+            Expanding our horizon, we have also stepped into the real estate market in Nashik, bringing with us the same dedication and expertise that earned us respect in Dhule.
+          </p>
+          <p style="font-style:italic; color:#666; font-size:1em; margin-bottom:0;">
+            Every project is a symbol of durability, functionality, and aesthetics—crafted to meet the evolving lifestyle needs of our clients.
+          </p>
+        </div>
+        <div style="flex:1 1 340px; min-width:280px; text-align:center; display:flex; align-items:center; justify-content:center;">
+          <img src="images/trust.jpg" alt="Living Space" style="max-width:340px; width:100%; height:auto; border-radius:18px; box-shadow:0 2px 16px rgba(0,0,0,0.13); object-fit:cover;">
+        </div>
       </div>
-      <p style="font-style:italic; color:#666; font-size:1.08em;">Every project is a symbol of durability, functionality, and aesthetics—crafted to meet the evolving lifestyle needs of our clients.</p>
     </div>
   </section>
 
   <!-- Why Choose Us -->
   <section id="awards" class="awards">
-    <div class="container">
-      <h2 style="text-align:center; margin-bottom:1.5em;">Why Choose Us?</h2>
-      <div style="max-width:800px; margin:0 auto;">
-        <div style="text-align:center; margin-bottom:2em;">
-          <h3 style="color:#ff9800; margin-bottom:1em;">Building Trust, Delivering Excellence</h3>
-          <p style="font-size:1.1em; line-height:1.8; color:#333;">At Yog Construction, we don’t just build spaces—we create lasting value. With decades of expertise in both residential and commercial development, we bring together innovation, precision, and reliability to deliver projects that stand the test of time.</p>
-        </div>
-        <div style="background:#f9f9f9; padding:2em; border-radius:12px; margin:2em 0;">
-          <h3 style="color:#333; text-align:center; margin-bottom:1em;">What Sets Us Apart</h3>
-          <ul style="max-width:600px; margin:0 auto; color:#444; line-height:1.8; font-size:1.05em;">
-            <li style="margin-bottom:0.8em;">✓ Seasoned Experts with 25+ years of experience in the industry</li>
-            <li style="margin-bottom:0.8em;">✓ End-to-End Solutions covering design, planning, construction, and delivery</li>
-            <li style="margin-bottom:0.8em;">✓ Customer-First Philosophy, ensuring your vision and comfort come first</li>
-            <li style="margin-bottom:0.8em;">✓ Strict Quality Control & Supervision for flawless execution every time</li>
-            <li style="margin-bottom:0.8em;">✓ 3D Virtual Experience available directly on our website to help clients explore spaces and make faster, more confident decisions</li>
+    <div class="container" style="max-width:900px; margin:0 auto;">
+      <div style="display:flex; flex-wrap:wrap; gap:40px; align-items:stretch;">
+        <div style="flex:1 1 340px; min-width:280px; text-align:left; display:flex; flex-direction:column; justify-content:center;">
+          <h2 style="margin-bottom:0.7em;">Why Choose Us?</h2>
+          <h3 style="color:#ff9800; margin-bottom:0.5em;">Building Trust, Delivering Excellence</h3>
+          <p style="font-size:1em; line-height:1.5; color:#333; margin-bottom:0.7em;">
+            With 25+ years of experience, Yog Construction delivers reliable, high-quality spaces for families and businesses. We combine innovation, precision, and transparency to ensure every project stands the test of time.
+          </p>
+          <ul style="color:#444; line-height:1.5; font-size:1em; margin-bottom:0.7em; padding-left:1em;">
+            <li>✓ End-to-End Solutions: design, planning, construction, delivery</li>
+            <li>✓ Customer-First: your vision and comfort come first</li>
+            <li>✓ Strict Quality Control & Supervision</li>
+            <li>✓ 3D Virtual Experience for confident decisions</li>
           </ul>
+          <p style="font-style:italic; color:#666; font-size:1em; margin-bottom:0;">
+            Our focus: quality craftsmanship, transparency, and customer satisfaction.
+          </p>
         </div>
-        <div style="text-align:center; margin-top:2em;">
-          <p style="font-style:italic; color:#666; font-size:1.1em;">Our focus is always on quality craftsmanship, transparency, and customer satisfaction, making us the preferred choice for families, businesses, and investors alike.</p>
+        <div style="flex:1 1 340px; min-width:280px; text-align:center; display:flex; align-items:center; justify-content:center;">
+          <img src="images/homekey.jpg" alt="Home Key" style="max-width:340px; width:100%; height:auto; border-radius:18px; box-shadow:0 2px 16px rgba(0,0,0,0.13); object-fit:cover;">
         </div>
       </div>
     </div>
@@ -248,11 +263,11 @@
       <div class="grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:2.5rem; margin-top:2em;">
         <div style="background:#fff; border-radius:16px; box-shadow:0 2px 12px rgba(0,0,0,0.07); padding:2rem 1.5rem; text-align:center;">
           <h3 style="color:#ff9800; margin-bottom:1em;">Address</h3>
-          <p style="color:#555;">Yog Construction,<br>123 Main Road,<br>Dhule, Maharashtra 424001</p>
+          <p style="color:#555;">Yog Construction,<br>1st floor, Ratnadeep Tower, Dattamandir<br> Deopur, Dhule, Maharashtra 424004</p>
         </div>
         <div style="background:#fff; border-radius:16px; box-shadow:0 2px 12px rgba(0,0,0,0.07); padding:2rem 1.5rem; text-align:center;">
           <h3 style="color:#ff9800; margin-bottom:1em;">Phone Contact</h3>
-          <p style="color:#555;">+91 98765 43210<br>+91 91234 56789</p>
+          <p style="color:#555;">+91 9822171030<br>+91 95522538121</p>
         </div>
         <div style="background:#fff; border-radius:16px; box-shadow:0 2px 12px rgba(0,0,0,0.07); padding:2rem 1.5rem; text-align:center;">
           <h3 style="color:#ff9800; margin-bottom:1em;">Opening Hours</h3>
