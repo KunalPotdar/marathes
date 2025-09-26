@@ -33,17 +33,17 @@ document.body.appendChild(renderer.domElement);
 
 
 const aspect = window.innerWidth / window.innerHeight;
-const frustumSize = 100;
+const frustumSize = 1;
 
 
  camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1100 );
 
 
-const geometry = new THREE.SphereGeometry( 500, 60, 40 );
+const geometry = new THREE.SphereGeometry( 1000, 80, 40 );
   // invert the geometry on the x-axis so that all of the faces point inward
-geometry.scale( - 1, 1, 1 );
+geometry.scale( -1, 1, 1 );
 
-const texture = new THREE.TextureLoader().load( '../images/smallimage.png' );
+const texture = new THREE.TextureLoader().load( '../images/2.png' );
 texture.colorSpace = THREE.SRGBColorSpace;
 const material = new THREE.MeshBasicMaterial( { map: texture } );
 
@@ -54,7 +54,7 @@ renderer.setAnimationLoop( animate );
   //animate();
 
 
-lon = 120; // Rotate scene horizontally
+lon = 100; // Rotate scene horizontally
 ;  // Slight tilt up/down
 animate();
 }
