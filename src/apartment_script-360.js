@@ -61,7 +61,7 @@ animate();
 
 function animate() {
  requestAnimationFrame(animate);
- lon += 0.008; // Adjust this value to change the rotation speed
+ lon += 0.006; // Adjust this value to change the rotation speed
  lat = Math.max( - 85, Math.min( 85, lat ) );
 				phi = THREE.MathUtils.degToRad( 90 - lat );
 				theta = THREE.MathUtils.degToRad( lon );
