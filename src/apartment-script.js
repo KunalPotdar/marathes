@@ -27,7 +27,7 @@ const frustumSize = 1;
 
 // Create an Perpective camera for Human Hight 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set(3, 2, 15); // Start height like a human (1.6 meters)
+camera.position.set(3, 1.7, 6); // Start height like a human (1.6 meters)
 
 // Controls
 const controls = new PointerLockControls(camera, renderer.domElement); // Use renderer.domElement, not document.body
