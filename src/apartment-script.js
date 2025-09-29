@@ -23,15 +23,15 @@ const scene = new THREE.Scene();
 
 
 const aspect = window.innerWidth / window.innerHeight;
-const frustumSize = 100;
+const frustumSize = 1;
 
 // Create an Perpective camera for Human Hight 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set(30, 20, -40); // Start height like a human (1.6 meters)
+camera.position.set(3, 2, 15); // Start height like a human (1.6 meters)
 
 // Controls
-const controls = new PointerLockControls(camera, document.body);
-scene.add(controls.getObject()); // Important: add controls to the scene
+const controls = new PointerLockControls(camera, renderer.domElement); // Use renderer.domElement, not document.body
+scene.add(controls); // Add controls directly, not controls.getObject()
 
 const walkthroughPanel = document.getElementById('walkthrough-controls');
 const walkthroughBtn = document.getElementById('startWalkthroughBtn');
@@ -82,7 +82,7 @@ scene.add(light4);
 
 //const loader = new GLTFLoader().setPath('client/project2/apts/');
 const loader = new GLTFLoader();
-loader.load('https://apt-hsim-models.s3.eu-west-3.amazonaws.com/coloured.glb', (gltf) => {
+loader.load('https://apt-hsim-models.s3.eu-west-3.amazonaws.com/sampleflat.glb', (gltf) => {
   console.log('Apartment model');
   const mesh = gltf.scene;
 
