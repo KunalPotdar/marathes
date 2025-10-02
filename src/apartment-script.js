@@ -55,30 +55,16 @@ controls.addEventListener('unlock', () => {
 // LIGHTS
 
 // Ambient Light 
-const hlight = new THREE.AmbientLight (0xffffff,0.9);
+const hlight = new THREE.AmbientLight (0xFEFAF1,1.5);
 scene.add(hlight);
-
 // Directional Light 
-const directionalLight = new THREE.DirectionalLight(0xffffff,1.5);
-directionalLight.position.set(100,1,7.5);
-directionalLight.target.position.set(0,0,0);
+const directionalLight = new THREE.DirectionalLight(	0xefc070,2);
+directionalLight.position.set(-100,100,1);
+directionalLight.target.position.set(100,20,0);
 directionalLight.castShadow = true;
 scene.add(directionalLight);
 scene.add(directionalLight.target);
 
-
-const light = new THREE.DirectionalLight(0xffffff,1.5);
-light.position.set(10, 10, 110);
-scene.add(light);
-const light2 = new THREE.DirectionalLight(0xffffff,1.5);
-light2.position.set(1,1,-10);
-scene.add(light2);
-const light3 = new THREE.DirectionalLight(0xffffff,1.5);
-light3.position.set(-100,1,0);
-scene.add(light3);
-const light4 = new THREE.PointLight(0xc4c4c4,1.0);
-light4.position.set(-500,300,500);
-scene.add(light4);
 
 //const loader = new GLTFLoader().setPath('client/project2/apts/');
 const loader = new GLTFLoader();
