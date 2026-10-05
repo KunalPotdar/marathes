@@ -6,6 +6,16 @@
   <meta name="theme-color" content="#ffffff" />
   <title>Ashirwad Apartment — 360° Viewer</title>
   <style>
+    :root {
+      --color-ink: #26352f;
+      --color-muted: #68736d;
+      --color-accent: #b96545;
+      --color-accent-dark: #985039;
+      --color-line: #e5e7e2;
+      --color-paper: #f5f4f0;
+      --color-surface: #fff;
+    }
+
     * {
       box-sizing: border-box;
     }
@@ -16,9 +26,10 @@
       min-height: 100vh;
       min-height: 100dvh;
       margin: 0;
-      background: #fff;
-      color: #1a1a1a;
-      font-family: "Segoe UI", sans-serif;
+      background: var(--color-paper);
+      color: var(--color-ink);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.5;
     }
 
     .viewer-header {
@@ -27,9 +38,10 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      padding: 14px clamp(16px, 4vw, 40px);
-      background: #fff;
-      border-bottom: 1px solid #e5e7eb;
+      padding: 16px clamp(18px, 4vw, 48px);
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-line);
+      box-shadow: 0 2px 10px rgba(38, 53, 47, 0.035);
     }
 
     .viewer-heading {
@@ -40,7 +52,7 @@
 
     h1 {
       margin: 0;
-      color: #26352f;
+      color: var(--color-ink);
       font-family: Georgia, "Times New Roman", serif;
       font-size: clamp(1.1rem, 3vw, 1.5rem);
       font-weight: 500;
@@ -49,12 +61,12 @@
 
     .viewer-heading p {
       margin: 0;
-      color: #5b6570;
+      color: var(--color-muted);
       font-size: 0.9rem;
     }
 
     .back-link {
-      color: #194b70;
+      color: var(--color-ink);
       font-size: 0.9rem;
       font-weight: 600;
       text-decoration: none;
@@ -66,41 +78,119 @@
 
     .viewer-nav {
       display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+      align-items: center;
+      gap: 4px;
+      min-width: 0;
     }
 
     .viewer-nav button {
-      min-height: 42px;
-      padding: 8px 16px;
-      border: 1px solid #194b70;
-      border-radius: 999px;
-      background: #fff;
-      color: #194b70;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-height: 40px;
+      padding: 8px 12px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      background: transparent;
+      color: var(--color-muted);
       font: inherit;
+      font-size: 0.86rem;
       font-weight: 600;
       cursor: pointer;
-      transition: background-color 0.2s, color 0.2s;
+      white-space: nowrap;
+      transition: background-color 0.18s, color 0.18s, border-color 0.18s;
     }
 
-    .viewer-nav button:hover,
+    .viewer-nav button:hover {
+      background: #eeefeb;
+      color: var(--color-ink);
+    }
+
     .viewer-nav button[aria-pressed="true"] {
-      background: #194b70;
-      color: #fff;
+      border-color: var(--color-line);
+      background: var(--color-surface);
+      color: var(--color-ink);
+      box-shadow: 0 1px 3px rgba(38, 53, 47, 0.08);
+    }
+
+    .viewer-nav button svg {
+      flex: 0 0 auto;
+      width: 19px;
+      height: 19px;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.7;
     }
 
     .viewer-nav button:focus-visible {
-      outline: 3px solid #f4c38e;
-      outline-offset: 3px;
+      z-index: 1;
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+      border-radius: 8px;
     }
 
     .viewer-frame {
-      display: grid;
+      display: flex;
       flex: 1;
-      min-height: 0;
+      min-height: 420px;
       width: 100%;
-      padding: 12px;
-      place-items: center;
+      flex-direction: column;
+      padding: 20px clamp(16px, 4vw, 48px) 24px;
+    }
+
+    .viewer-selector {
+      width: min(1280px, 100%);
+      margin: 0 auto;
+      padding: 14px 18px;
+      border: 1px solid var(--color-line);
+      border-bottom: 0;
+      border-radius: 14px 14px 0 0;
+      background: #eeefeb;
+    }
+
+    .viewer-toolbar-row,
+    .viewer-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .viewer-toolbar-row {
+      justify-content: space-between;
+    }
+
+    .viewer-selector h2 {
+      margin: 0 0 2px;
+      color: var(--color-accent-dark);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.055em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .viewer-instructions {
+      margin: 0;
+      color: var(--color-muted);
+      font-size: 0.82rem;
+    }
+
+    .viewer-controls {
+      min-width: 0;
+    }
+
+    .viewer-status {
+      width: min(1280px, 100%);
+      margin: 0 auto;
+      padding: 8px 12px;
+      border-right: 1px solid var(--color-line);
+      border-left: 1px solid var(--color-line);
+      background: var(--color-surface);
+      color: var(--color-muted);
+      font-size: 0.78rem;
     }
 
     .contact-actions a {
@@ -109,9 +199,9 @@
       justify-content: center;
       min-height: 46px;
       padding: 10px 18px;
-      border: 1px solid #194b70;
+      border: 1px solid var(--color-ink);
       border-radius: 999px;
-      background: #194b70;
+      background: var(--color-ink);
       color: #fff;
       font: inherit;
       font-weight: 650;
@@ -123,22 +213,102 @@
 
     .contact-actions a:hover {
       transform: translateY(-1px);
-      background: #123b5a;
+      background: #1b2924;
     }
 
     .contact-actions a:focus-visible {
-      outline: 3px solid #d98b66;
+      outline: 3px solid var(--color-accent);
       outline-offset: 3px;
     }
 
-    iframe {
+    .fullscreen-button {
+      display: inline-flex;
+      flex: 0 0 auto;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-height: 40px;
+      padding: 8px 10px;
+      border: 1px solid #dce3dd;
+      border-radius: 8px;
+      background: var(--color-surface);
+      color: var(--color-ink);
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .fullscreen-button:hover {
+      background: #eeefeb;
+    }
+
+    .fullscreen-button:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+    }
+
+    .fullscreen-button svg {
+      width: 17px;
+      height: 17px;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.7;
+    }
+
+    .viewer-stage {
+      position: relative;
+      display: flex;
+      flex: 1;
+      width: min(1280px, 100%);
+      min-height: clamp(480px, 68vh, 820px);
+      margin: 0 auto;
+      overflow: hidden;
+      border: 1px solid var(--color-line);
+      border-radius: 0 0 14px 14px;
+      background: #e9ebe7;
+      box-shadow: 0 16px 38px rgba(38, 53, 47, 0.12);
+    }
+
+    .viewer-stage iframe {
       display: block;
-      width: min(1120px, 100%);
-      height: min(70vh, 760px);
-      min-height: 320px;
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      min-height: clamp(480px, 68vh, 820px);
       border: 0;
-      border-radius: 12px;
-      background: #fff;
+      background: var(--color-surface);
+    }
+
+    .viewer-hint {
+      position: absolute;
+      right: 14px;
+      bottom: 14px;
+      z-index: 1;
+      margin: 0;
+      padding: 7px 11px;
+      border: 1px solid rgba(255,255,255,0.8);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.94);
+      color: var(--color-ink);
+      font-size: 0.78rem;
+      box-shadow: 0 2px 8px rgba(38, 53, 47, 0.12);
+      pointer-events: none;
+    }
+
+    .viewer-stage:fullscreen {
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      border: 0;
+      border-radius: 0;
+      background: var(--color-surface);
+    }
+
+    .viewer-stage:fullscreen iframe {
+      min-height: 0;
     }
 
     .contact-actions {
@@ -148,41 +318,58 @@
       justify-content: center;
       gap: 10px;
       padding: 14px 16px;
-      border-top: 1px solid #e5e7eb;
-      background: #fff;
+      border-top: 1px solid var(--color-line);
+      background: var(--color-surface);
     }
 
     .contact-prompt {
       margin: 0 8px 0 0;
-      color: #5b6570;
+      color: var(--color-muted);
       font-size: 0.92rem;
     }
 
     .contact-actions a:last-child {
-      border-color: #194b70;
-      background: #fff;
-      color: #194b70;
+      border-color: var(--color-ink);
+      background: var(--color-surface);
+      color: var(--color-ink);
     }
 
     .contact-actions a:last-child:hover {
-      background: #f1f6fa;
+      background: #f3eee9;
     }
 
     .powered-by {
       padding: 10px 16px;
-      color: #5b6570;
+      color: var(--color-muted);
       font-size: 0.78rem;
       text-align: center;
     }
 
     .powered-by a {
-      color: #194b70;
+      color: var(--color-ink);
       font-weight: 600;
       text-decoration: none;
     }
 
     .powered-by a:hover {
       text-decoration: underline;
+    }
+
+    @media (max-width: 960px) {
+      .viewer-toolbar-row {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .viewer-toolbar-row > div:first-child {
+        width: 100%;
+      }
+
+      .viewer-controls {
+        width: 100%;
+        justify-content: space-between;
+      }
     }
 
     @media (max-width: 600px) {
@@ -192,26 +379,80 @@
         gap: 12px;
       }
 
-      .viewer-nav {
+      .viewer-toolbar-row {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .viewer-controls {
         width: 100%;
+        gap: 4px;
+      }
+
+      .viewer-nav {
+        flex: 1;
+        gap: 2px;
       }
 
       .viewer-nav button {
-        flex: 1 1 calc(50% - 8px);
-        padding-inline: 8px;
-        font-size: 0.88rem;
+        flex: 1 1 0;
+        min-width: 0;
+        min-height: 48px;
+        gap: 4px;
+        padding: 6px 4px;
+        font-size: 0.72rem;
+        white-space: normal;
+        line-height: 1.15;
+      }
+
+      .viewer-nav button svg {
+        width: 17px;
+        height: 17px;
       }
 
       .viewer-frame {
         flex: 1;
-        min-height: 360px;
-        padding: 8px;
+        min-height: 0;
+        padding: 10px 8px;
       }
 
-      iframe {
+      .viewer-instructions {
+        font-size: 0.76rem;
+      }
+
+      .viewer-selector {
+        padding: 10px;
+      }
+
+      .viewer-stage {
+        flex: 1;
+        min-height: clamp(360px, 58vh, 620px);
+      }
+
+      .viewer-stage iframe {
         width: 100%;
-        height: min(62vh, 720px);
-        min-height: 320px;
+        height: 100%;
+        min-height: clamp(360px, 58vh, 620px);
+      }
+
+      .fullscreen-button {
+        min-height: 42px;
+        gap: 0;
+        padding: 8px;
+        font-size: 0;
+      }
+
+      .fullscreen-button svg {
+        width: 19px;
+        height: 19px;
+      }
+
+      .viewer-hint {
+        right: 8px;
+        bottom: 8px;
+        padding: 6px 8px;
+        font-size: 0.7rem;
       }
 
       .contact-actions {
@@ -243,15 +484,42 @@
       <h1>Ashirwad Apartment</h1>
       <p>Explore in 360° · Deopur, Dhule</p>
     </div>
-    <nav class="viewer-nav" aria-label="Choose an apartment view">
-      <button type="button" data-view-src="360Aerial.html" data-view-name="Aerial" aria-pressed="true">Aerial</button>
-      <button type="button" data-view-src="360Pedestrian.html" data-view-name="Pedestrian" aria-pressed="false">Pedestrian</button>
-      <button type="button" data-view-src="../src/main-ext.html" data-view-name="Choose your Apartment" aria-pressed="false">Choose your Apartment</button>
-    </nav>
     <a class="back-link" href="aashirwad.html">← Back to apartment details</a>
   </header>
   <main class="viewer-frame">
-    <iframe id="apartment-viewer" src="360Aerial.html" title="Aerial view of Ashirwad Apartment"></iframe>
+    <section class="viewer-selector" aria-labelledby="view-selector-title">
+      <div class="viewer-toolbar-row">
+        <div>
+          <h2 id="view-selector-title">EXPERIENCE YOUR FUTURE APARTMENT</h2>
+          <p class="viewer-instructions">Choose a view. Drag to rotate.</p>
+        </div>
+        <div class="viewer-controls">
+          <nav class="viewer-nav" aria-label="Apartment views">
+            <button type="button" data-view-src="360Aerial.html" data-view-name="Aerial" aria-pressed="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9M9 20v-6h6v6"/></svg>
+              <span>Aerial</span>
+            </button>
+            <button type="button" data-view-src="360Pedestrian.html" data-view-name="Pedestrian" aria-pressed="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="m10 22 1-7-3 2-2-3 4-4 4 1 2 4 3 2M13 11l-1 4 4 2"/></svg>
+              <span>Pedestrian</span>
+            </button>
+            <button type="button" data-view-src="../src/main-ext.html" data-view-name="Choose your Apartment" aria-pressed="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 10h1m4 0h1m-6 4h1m4 0h1m-4 7v-4h2v4"/></svg>
+              <span>Choose apartment</span>
+            </button>
+          </nav>
+          <button class="fullscreen-button" id="fullscreen-button" type="button" aria-label="Enter fullscreen" title="Enter fullscreen">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m13-5h3a2 2 0 0 1 2 2v3M3 16v3a2 2 0 0 0 2 2h3m13-5v3a2 2 0 0 1-2 2h-3"/></svg>
+            <span>Fullscreen</span>
+          </button>
+        </div>
+      </div>
+    </section>
+    <p class="viewer-status" id="viewer-status" aria-live="polite">Aerial view · Drag to look around</p>
+    <div class="viewer-stage" id="viewer-stage">
+      <iframe id="apartment-viewer" src="360Aerial.html" title="Aerial view of Ashirwad Apartment"></iframe>
+      <p class="viewer-hint">Drag to look around</p>
+    </div>
   </main>
   <footer class="contact-actions">
     <p class="contact-prompt">Like what you see? Arrange a visit to Ashirwad Apartment.</p>
@@ -263,16 +531,40 @@
   </div>
   <script>
     const viewerFrame = document.getElementById('apartment-viewer');
+    const viewerStage = document.getElementById('viewer-stage');
+    const fullscreenButton = document.getElementById('fullscreen-button');
     const viewerButtons = document.querySelectorAll('.viewer-nav [data-view-src]');
 
     viewerButtons.forEach((button) => {
       button.addEventListener('click', () => {
         viewerFrame.src = button.dataset.viewSrc;
         viewerFrame.title = `${button.dataset.viewName} view of Ashirwad Apartment`;
+        document.getElementById('viewer-status').textContent = button.dataset.viewName === 'Choose your Apartment'
+          ? 'Apartment selector'
+          : `${button.dataset.viewName} view · Drag to look around`;
         viewerButtons.forEach((item) => {
           item.setAttribute('aria-pressed', String(item === button));
         });
       });
+    });
+
+    fullscreenButton.addEventListener('click', async () => {
+      try {
+        if (document.fullscreenElement === viewerStage) {
+          await document.exitFullscreen();
+        } else {
+          await viewerStage.requestFullscreen();
+        }
+      } catch (error) {
+        document.getElementById('viewer-status').textContent = 'Fullscreen is not available in this browser.';
+      }
+    });
+
+    document.addEventListener('fullscreenchange', () => {
+      const isFullscreen = document.fullscreenElement === viewerStage;
+      fullscreenButton.setAttribute('aria-label', isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen');
+      fullscreenButton.title = isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen';
+      fullscreenButton.querySelector('span').textContent = isFullscreen ? 'Exit fullscreen' : 'Fullscreen';
     });
   </script>
 </body>
