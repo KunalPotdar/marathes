@@ -282,6 +282,10 @@
       background: var(--color-surface);
     }
 
+    .viewer-stage iframe[hidden] {
+      display: none;
+    }
+
     .viewer-hint {
       position: absolute;
       right: 14px;
@@ -534,18 +538,54 @@
     const viewerStage = document.getElementById('viewer-stage');
     const fullscreenButton = document.getElementById('fullscreen-button');
     const viewerButtons = document.querySelectorAll('.viewer-nav [data-view-src]');
+    const viewerStatus = document.getElementById('viewer-status');
+    const viewerFrames = new Map([['360Aerial.html', viewerFrame]]);
+    const loadedViews = new Set();
+    let activeView = 'Aerial';
 
     viewerButtons.forEach((button) => {
       button.addEventListener('click', () => {
-        viewerFrame.src = button.dataset.viewSrc;
-        viewerFrame.title = `${button.dataset.viewName} view of Ashirwad Apartment`;
-        document.getElementById('viewer-status').textContent = button.dataset.viewName === 'Choose your Apartment'
-          ? 'Apartment selector'
-          : `${button.dataset.viewName} view · Drag to look around`;
+        const { viewSrc, viewName } = button.dataset;
+        let frame = viewerFrames.get(viewSrc);
+
+        if (!frame) {
+          frame = document.createElement('iframe');
+          frame.title = viewName === 'Choose your Apartment'
+            ? 'Choose an apartment'
+            : `${viewName} view of Ashirwad Apartment`;
+          frame.src = viewSrc;
+          frame.addEventListener('load', () => {
+            loadedViews.add(viewSrc);
+            if (activeView === viewName) {
+              viewerStatus.textContent = viewName === 'Choose your Apartment'
+                ? 'Apartment selector'
+                : `${viewName} view · Drag to look around`;
+            }
+          });
+          viewerFrames.set(viewSrc, frame);
+          viewerStage.insertBefore(frame, viewerStage.querySelector('.viewer-hint'));
+        }
+
+        if (activeView !== viewName) {
+          viewerFrames.forEach((otherFrame) => {
+            otherFrame.hidden = otherFrame !== frame;
+          });
+          activeView = viewName;
+        }
+
+        viewerStatus.textContent = loadedViews.has(viewSrc)
+          ? viewName === 'Choose your Apartment'
+            ? 'Apartment selector'
+            : `${viewName} view · Drag to look around`
+          : `Loading ${viewName} view…`;
         viewerButtons.forEach((item) => {
           item.setAttribute('aria-pressed', String(item === button));
         });
       });
+    });
+
+    viewerFrame.addEventListener('load', () => {
+      loadedViews.add('360Aerial.html');
     });
 
     fullscreenButton.addEventListener('click', async () => {
@@ -556,7 +596,7 @@
           await viewerStage.requestFullscreen();
         }
       } catch (error) {
-        document.getElementById('viewer-status').textContent = 'Fullscreen is not available in this browser.';
+        viewerStatus.textContent = 'Fullscreen is not available in this browser.';
       }
     });
 

@@ -59,8 +59,8 @@
       // Total number of frames
       totalFrames: 60,
 
-      // Filename pattern — {index} replaced with the zero-based frame number
-      // Matches: Sequence4_00.png, Sequence4_01.png ... Sequence4_59.png
+      // Filename pattern — {index} replaced with the one-based frame number
+      // Matches: Sequence_1.png, Sequence_2.png ... Sequence_60.png
       filePattern: 'Sequence_{index}.png',
 
       // 2-digit zero-padding: 00, 01 ...
@@ -68,15 +68,14 @@
 
       // Pixels of horizontal drag needed to advance one frame
       dragSensitivity: 6,
-
-      // Number of frames to preload before showing the viewer
-      preloadCount: 36,
     };
     // ─────────────────────────────────────────────
 
     let currentFrame = 0;
-    let images = [];        // preloaded Image objects
-    let loaded = 0;
+    const images = [];
+    const loadQueue = [];
+    let activeLoads = 0;
+    const maxConcurrentLoads = 3;
     let isReady = false;
 
     // Drag state
@@ -93,33 +92,56 @@
       return CONFIG.baseUrl + CONFIG.filePattern.replace('{index}', padded);
     }
 
+    function processLoadQueue() {
+      while (activeLoads < maxConcurrentLoads && loadQueue.length > 0) {
+        const index = loadQueue.shift();
+        const image = images[index];
+        activeLoads++;
+        image.onload = image.onerror = () => {
+          activeLoads--;
+          if (index === 0) isReady = true;
+          if (index === currentFrame && image.naturalWidth > 0) {
+            spinImg.src = image.src;
+          }
+          processLoadQueue();
+        };
+        image.src = frameSrc(index);
+      }
+    }
+
+    function requestFrame(index, prioritize = false) {
+      index = ((index % CONFIG.totalFrames) + CONFIG.totalFrames) % CONFIG.totalFrames;
+      if (images[index]) {
+        if (prioritize) {
+          const queuedIndex = loadQueue.indexOf(index);
+          if (queuedIndex > 0) {
+            loadQueue.splice(queuedIndex, 1);
+            loadQueue.unshift(index);
+          }
+        }
+        processLoadQueue();
+        return;
+      }
+
+      images[index] = new Image();
+      if (prioritize) {
+        loadQueue.unshift(index);
+      } else {
+        loadQueue.push(index);
+      }
+      processLoadQueue();
+    }
+
     function showFrame(index) {
       currentFrame = ((index % CONFIG.totalFrames) + CONFIG.totalFrames) % CONFIG.totalFrames;
-      if (images[currentFrame] && images[currentFrame].complete) {
-        spinImg.src = images[currentFrame].src;
+      const image = images[currentFrame];
+      if (image && image.complete && image.naturalWidth > 0) {
+        spinImg.src = image.src;
+      } else {
+        requestFrame(currentFrame, true);
       }
-    }
-
-    function onFrameLoaded() {
-      loaded++;
-
-      // Show viewer once preload count is ready
-      if (!isReady && loaded >= CONFIG.preloadCount) {
-        isReady = true;
-        showFrame(0);
-      }
-    }
-
-    // ── Preload all frames ────────────────────────
-
-    function preloadAll() {
-      for (let i = 0; i < CONFIG.totalFrames; i++) {
-        const img = new Image();
-        img.onload = onFrameLoaded;
-        img.onerror = onFrameLoaded;
-        img.src = frameSrc(i);
-        images[i] = img;
-      }
+      requestFrame(currentFrame + 1);
+      requestFrame(currentFrame - 1);
     }
 
     // ── Drag — Mouse ─────────────────────────────
@@ -165,7 +187,7 @@
 
     // ── Start ────────────────────────────────────
 
-    preloadAll();
+    showFrame(0);
   </script>
 </body>
 </html>
