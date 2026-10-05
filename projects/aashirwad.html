@@ -108,7 +108,7 @@
       background:
         linear-gradient(90deg, rgba(25, 39, 34, 0.78), rgba(25, 39, 34, 0.25)),
         linear-gradient(0deg, rgba(25, 39, 34, 0.46), transparent 65%),
-        url('../images/marathin.png') center/cover no-repeat;
+        url('../images/ASHIRWAD_APARTMENT_b.jpg') center/cover no-repeat;
     }
 
     .hero-top {
@@ -165,6 +165,13 @@
       line-height: 1.8;
     }
 
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
     .btn {
       display: inline-flex;
       align-items: center;
@@ -185,6 +192,20 @@
       transform: translateY(-2px);
       border-color: var(--color-accent-dark);
       background: var(--color-accent-dark);
+    }
+
+    .btn-outline {
+      border-color: rgba(255,255,255,0.8);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .btn-outline:hover {
+      border-color: #fff;
+      background: rgba(255,255,255,0.2);
+    }
+
+    .mobile-contact-bar {
+      display: none;
     }
 
     section {
@@ -334,92 +355,19 @@
       box-shadow: var(--shadow-soft);
     }
 
-    #viewer {
-      margin: 0;
-      background: #24372f;
-      color: #fff;
-    }
-
-    #viewer h2 {
-      color: #fff;
-    }
-
-    #viewer .section-kicker {
-      color: #e9b18d;
-    }
-
-    #viewer p {
-      color: rgba(255,255,255,0.72);
-    }
-
-    #viewer iframe {
-      display: block;
-      height: clamp(420px, 66vw, 680px);
-      min-height: 420px;
-      border-radius: 18px;
-      background: #fff;
-      box-shadow: 0 18px 45px rgba(0,0,0,0.2);
-    }
-
-    #viewer .viewer-layout {
-      position: relative;
-      width: min(1200px, 100%);
-      margin: 0 auto;
-      text-align: left;
-    }
-
-    #viewer .viewer-nav {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      position: absolute;
-      top: 16px;
-      left: 16px;
-      z-index: 2;
-    }
-
-    #viewer .viewer-nav button {
-      display: grid;
-      width: 54px;
-      height: 54px;
-      place-items: center;
-      padding: 0;
-      border: 1px solid rgba(255,255,255,0.65);
-      border-radius: 50%;
-      background: rgba(31, 48, 42, 0.88);
-      color: #fff;
-      cursor: pointer;
-      backdrop-filter: blur(6px);
-      transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
-    }
-
-    #viewer .viewer-nav button:hover {
-      transform: scale(1.08);
-    }
-
-    #viewer .viewer-nav button svg {
-      width: 24px;
-      height: 24px;
-      fill: none;
-      stroke: currentColor;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke-width: 1.8;
-    }
-
-    #viewer .viewer-nav button:hover,
-    #viewer .viewer-nav button[aria-pressed="true"] {
-      border-color: #d98b66;
-      background: var(--color-accent);
-      color: #fff;
-    }
-
     #virtual-tour {
       background: #eeeae1;
     }
 
     #virtual-tour .section-inner {
       text-align: center;
+    }
+
+    .virtual-tour-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
     }
 
     section#highlights {
@@ -542,6 +490,10 @@
     }
 
     @media (max-width: 640px) {
+      body {
+        padding-bottom: calc(72px + env(safe-area-inset-bottom));
+      }
+
       .hero {
         min-height: 500px;
         padding: 24px 22px 54px;
@@ -552,6 +504,36 @@
         margin-top: 64px;
       }
 
+      .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+
+      .mobile-contact-bar {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 10;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+        border-top: 1px solid var(--color-line);
+        background: rgba(255,255,255,0.97);
+        box-shadow: 0 -8px 24px rgba(38,53,47,0.1);
+      }
+
+      .mobile-contact-bar .btn {
+        min-height: 46px;
+        padding: 8px 12px;
+        font-size: 0.88rem;
+      }
+
       .overview-grid {
         grid-template-columns: 1fr;
       }
@@ -559,26 +541,6 @@
       .project-gallery,
       .project-gallery img {
         min-height: 300px;
-      }
-
-      #viewer .viewer-nav {
-        top: 10px;
-        left: 10px;
-      }
-
-      #viewer .viewer-nav button {
-        width: 48px;
-        height: 48px;
-      }
-
-      #viewer .viewer-nav button svg {
-        width: 22px;
-        height: 22px;
-      }
-
-      #viewer iframe {
-        height: 62vh;
-        min-height: 380px;
       }
 
       .highlight-grid {
@@ -607,8 +569,12 @@
     </div>
     <div class="hero-content">
       <p class="hero-kicker">Yog Construction · Deopur, Dhule</p>
-      <h2>Thoughtful living, made for you.</h2>
+      <h2>Thoughtful 2BHK living in Deopur.</h2>
       <p class="hero-quote">घर म्हणजे चार भिंती नव्हे, तेथे असतात आई-बाबांचे आशीर्वाद, ज्यांनी उभं केलं आपल्या आयुष्याचं घरकुल.</p>
+      <div class="hero-actions">
+        <a class="btn" href="apartment-viewer.html">Explore in 3D</a>
+        <a class="btn btn-outline" href="#contact">Arrange a site visit</a>
+      </div>
     </div>
   </div>
 
@@ -632,38 +598,16 @@
       </div>
     </div>
   </section>
-  
-<section id="viewer">
-    <p class="section-kicker">Explore in 360°</p>
-    <h2 class="section-title">Take a look around</h2>
-    <p class="section-lead">Choose a view and explore your future home at your own pace.</p>
-    <div class="viewer-layout">
-      <nav class="viewer-nav" aria-label="Apartment viewer options">
-        <button type="button" data-view-src="360Aerial.html" aria-label="Aerial View" title="Aerial View" aria-pressed="true">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9M9 20v-6h6v6"/></svg>
-        </button>
-        <button type="button" data-view-src="360Pedestrian.html" aria-label="Pedestrian View" title="Pedestrian View" aria-pressed="false">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="m10 22 1-7-3 2-2-3 4-4 4 1 2 4 3 2M13 11l-1 4 4 2"/></svg>
-        </button>
-        <button type="button" data-view-src="../src/main-ext.html" aria-label="Floor Selectors" title="Floor Selectors" aria-pressed="false">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 7 9-4 9 4-9 4-9-4Z"/><path d="m3 12 9 4 9-4M3 17l9 4 9-4"/></svg>
-        </button>
-      </nav>
-      <div class="viewer-frame">
-        <iframe id="apartment-viewer" src="360Aerial.html" title="Aerial View" loading="lazy"></iframe>
-      </div>
-    </div>
-  </section>
-
 <section id="virtual-tour">
   <div class="section-inner">
     <p class="section-kicker">See it for yourself</p>
     <h2 class="section-title">Walk through your future home</h2>
     <p class="section-lead">Watch the Ashirwad Apartment walkthrough and get a feel for the spaces.</p>
-    <div>
+    <div class="virtual-tour-actions">
       <a class="btn" href="https://www.youtube.com/watch?v=o3CdlQAhyrg" target="_blank" rel="noopener noreferrer">
         Watch the walkthrough on YouTube
       </a>
+      <a class="btn" href="apartment-viewer.html">Explore in 3D</a>
     </div>
   </div>
 </section>
@@ -732,7 +676,7 @@
 </section>
 
 
-  <section class="contact-section">
+  <section class="contact-section" id="contact">
     <div class="conctact">
       <p class="section-kicker">We'd love to show you around</p>
       <h2>Come see it for yourself</h2>
@@ -748,20 +692,12 @@
     &copy; 2025 Yog Construction with . All rights reserved.
   </div>
 
+  <nav class="mobile-contact-bar" aria-label="Quick contact">
+    <a class="btn" href="tel:+919822171030">Call now</a>
+    <a class="btn" href="#contact">Arrange a visit</a>
+  </nav>
+
 <script>
-  const viewerFrame = document.getElementById('apartment-viewer');
-  const viewerButtons = document.querySelectorAll('.viewer-nav [data-view-src]');
-
-  viewerButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      viewerFrame.src = button.dataset.viewSrc;
-      viewerFrame.title = button.getAttribute('aria-label');
-      viewerButtons.forEach((item) => {
-        item.setAttribute('aria-pressed', String(item === button));
-      });
-    });
-  });
-
   // Slider logic
   const images = [
     "../images/ASHIRWAD_APARTMENT_a.jpg",

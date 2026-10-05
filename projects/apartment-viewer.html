@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>Ashirwad Apartment — 360° Viewer</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      min-height: 100dvh;
+      margin: 0;
+      background: #fff;
+      color: #1a1a1a;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    .viewer-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px clamp(16px, 4vw, 40px);
+      background: #fff;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .viewer-heading {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    h1 {
+      margin: 0;
+      color: #26352f;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+
+    .viewer-heading p {
+      margin: 0;
+      color: #5b6570;
+      font-size: 0.9rem;
+    }
+
+    .back-link {
+      color: #194b70;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    .viewer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .viewer-nav button {
+      min-height: 42px;
+      padding: 8px 16px;
+      border: 1px solid #194b70;
+      border-radius: 999px;
+      background: #fff;
+      color: #194b70;
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .viewer-nav button:hover,
+    .viewer-nav button[aria-pressed="true"] {
+      background: #194b70;
+      color: #fff;
+    }
+
+    .viewer-nav button:focus-visible {
+      outline: 3px solid #f4c38e;
+      outline-offset: 3px;
+    }
+
+    .viewer-frame {
+      display: grid;
+      flex: 1;
+      min-height: 0;
+      width: 100%;
+      padding: 12px;
+      place-items: center;
+    }
+
+    .contact-actions a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 10px 18px;
+      border: 1px solid #194b70;
+      border-radius: 999px;
+      background: #194b70;
+      color: #fff;
+      font: inherit;
+      font-weight: 650;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.2s;
+    }
+
+    .contact-actions a:hover {
+      transform: translateY(-1px);
+      background: #123b5a;
+    }
+
+    .contact-actions a:focus-visible {
+      outline: 3px solid #d98b66;
+      outline-offset: 3px;
+    }
+
+    iframe {
+      display: block;
+      width: min(1120px, 100%);
+      height: min(70vh, 760px);
+      min-height: 320px;
+      border: 0;
+      border-radius: 12px;
+      background: #fff;
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 16px;
+      border-top: 1px solid #e5e7eb;
+      background: #fff;
+    }
+
+    .contact-prompt {
+      margin: 0 8px 0 0;
+      color: #5b6570;
+      font-size: 0.92rem;
+    }
+
+    .contact-actions a:last-child {
+      border-color: #194b70;
+      background: #fff;
+      color: #194b70;
+    }
+
+    .contact-actions a:last-child:hover {
+      background: #f1f6fa;
+    }
+
+    .powered-by {
+      padding: 10px 16px;
+      color: #5b6570;
+      font-size: 0.78rem;
+      text-align: center;
+    }
+
+    .powered-by a {
+      color: #194b70;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .powered-by a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .viewer-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .viewer-nav {
+        width: 100%;
+      }
+
+      .viewer-nav button {
+        flex: 1 1 calc(50% - 8px);
+        padding-inline: 8px;
+        font-size: 0.88rem;
+      }
+
+      .viewer-frame {
+        flex: 1;
+        min-height: 360px;
+        padding: 8px;
+      }
+
+      iframe {
+        width: 100%;
+        height: min(62vh, 720px);
+        min-height: 320px;
+      }
+
+      .contact-actions {
+        position: sticky;
+        bottom: 0;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 10px 12px max(10px, env(safe-area-inset-bottom));
+        box-shadow: 0 -6px 20px rgba(25, 39, 52, 0.08);
+      }
+
+      .contact-prompt {
+        grid-column: 1 / -1;
+        margin: 0;
+        text-align: center;
+      }
+
+      .contact-actions a {
+        padding-inline: 8px;
+        font-size: 0.88rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="viewer-header">
+    <div class="viewer-heading">
+      <h1>Ashirwad Apartment</h1>
+      <p>Explore in 360° · Deopur, Dhule</p>
+    </div>
+    <nav class="viewer-nav" aria-label="Choose an apartment view">
+      <button type="button" data-view-src="360Aerial.html" data-view-name="Aerial" aria-pressed="true">Aerial</button>
+      <button type="button" data-view-src="360Pedestrian.html" data-view-name="Pedestrian" aria-pressed="false">Pedestrian</button>
+      <button type="button" data-view-src="../src/main-ext.html" data-view-name="Choose your Apartment" aria-pressed="false">Choose your Apartment</button>
+    </nav>
+    <a class="back-link" href="aashirwad.html">← Back to apartment details</a>
+  </header>
+  <main class="viewer-frame">
+    <iframe id="apartment-viewer" src="360Aerial.html" title="Aerial view of Ashirwad Apartment"></iframe>
+  </main>
+  <footer class="contact-actions">
+    <p class="contact-prompt">Like what you see? Arrange a visit to Ashirwad Apartment.</p>
+    <a href="tel:+919822171030">Call to enquire</a>
+    <a href="aashirwad.html#contact">Arrange a site visit</a>
+  </footer>
+  <div class="powered-by">
+    Powered by <a href="https://www.houseinmeta.com" target="_blank" rel="noopener noreferrer">HouseInMeta</a>
+  </div>
+  <script>
+    const viewerFrame = document.getElementById('apartment-viewer');
+    const viewerButtons = document.querySelectorAll('.viewer-nav [data-view-src]');
+
+    viewerButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        viewerFrame.src = button.dataset.viewSrc;
+        viewerFrame.title = `${button.dataset.viewName} view of Ashirwad Apartment`;
+        viewerButtons.forEach((item) => {
+          item.setAttribute('aria-pressed', String(item === button));
+        });
+      });
+    });
+  </script>
+</body>
+</html>
