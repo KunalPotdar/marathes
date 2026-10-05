@@ -7,9 +7,12 @@
   <meta name="description" content="Explore Ashirwad Apartment by Yog Construction — spacious 2BHK flats in Deopur, Dhule with modern amenities, secure living & excellent connectivity. Book a site visit today!" />
   <link rel="canonical" href="https://www.yogconstruction.com/projects/aashirwad.html" />
   <!-- Open Graph / Social -->
-  <meta property="og:title" content="Ashirwad Apartment | 2BHK Flats in Deopur, Dhule | Yog Construction" />
-  <meta property="og:description" content="Ashirwad Apartment by Yog Construction — 2BHK flats in Deopur, Dhule. Modern amenities, prime location. Contact us to schedule a site visit." />
+  <meta property="og:title" content="Explore Ashirwad Apartment in 360° | Yog Construction" />
+  <meta property="og:description" content="Open the interactive 360° views and explore Ashirwad Apartment in Deopur, Dhule." />
   <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://www.yogconstruction.com/images/ASHIRWAD_APARTMENT_b.jpg" />
+  <meta property="og:image:alt" content="Exterior view of Ashirwad Apartment" />
+  <meta name="twitter:card" content="summary_large_image" />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FW54TPQZCH"></script>
   <script type="application/ld+json">
@@ -67,65 +70,125 @@
     gtag('config', 'G-FW54TPQZCH');
   </script>
   <style>
+    :root {
+      color-scheme: light;
+      --color-ink: #26352f;
+      --color-muted: #68736d;
+      --color-paper: #f7f5f0;
+      --color-surface: #fff;
+      --color-accent: #b96545;
+      --color-accent-dark: #985039;
+      --color-line: #e8e3da;
+      --font-body: "Segoe UI", Arial, sans-serif;
+      --font-heading: Georgia, "Times New Roman", serif;
+      --shadow-soft: 0 18px 50px rgba(38, 53, 47, 0.09);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      color: #333;
-      background: #ffdbcbf3;
+      font-family: var(--font-body);
+      color: var(--color-ink);
+      background: var(--color-paper);
+      line-height: 1.65;
     }
 
     .hero {
-      background: url('../images/marathin.png') center/cover no-repeat;
-      color: white;
-      text-align: center;
-      padding: 180px 20px 120px 20px;
       position: relative;
+      display: flex;
+      min-height: 540px;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      padding: 30px clamp(24px, 7vw, 100px) 76px;
+      color: #fff;
+      background:
+        linear-gradient(90deg, rgba(25, 39, 34, 0.78), rgba(25, 39, 34, 0.25)),
+        linear-gradient(0deg, rgba(25, 39, 34, 0.46), transparent 65%),
+        url('../images/marathin.png') center/cover no-repeat;
+    }
+
+    .hero-top {
+      position: relative;
+      z-index: 1;
     }
 
     .hero h1 {
       margin: 0;
-      font-size: 3rem;
-      text-shadow: 0 6px 8px rgba(0,0,0,0.13);
-      position: absolute;
-      top: 32px;
-      left: 40px;
-      text-align: left;
+      font-family: var(--font-heading);
+      font-size: clamp(1.7rem, 3vw, 2.35rem);
+      font-weight: 500;
+      letter-spacing: 0.015em;
     }
 
     .hero p {
-      margin-top: 8px;
-      font-size: 1.1rem;
-      margin-bottom: 24px;
-      position: absolute;
-      top: 90px;
-      left: 40px;
-      width: max-content;
-      text-align: left;
+      margin: 2px 0 0;
+      color: rgba(255,255,255,0.85);
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin-top: 88px;
+    }
+
+    .hero-kicker {
+      margin: 0 0 12px;
+      color: #f2c8a9;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
     }
 
     .hero h2 {
-      font-size: 2.5rem;
-      margin-bottom: 5px;
-      margin-top: 100px;
+      margin: 0 0 14px;
+      font-family: var(--font-heading);
+      font-size: clamp(2.6rem, 6vw, 5.25rem);
+      font-weight: 400;
+      letter-spacing: -0.035em;
+      line-height: 1.05;
+      text-wrap: balance;
     }
 
-    .hero p2 {
-      font-size: 1.2rem;
-      margin-bottom: 18px;
-      display: block;
+    .hero-quote {
+      max-width: 650px;
+      margin: 0;
+      color: rgba(255,255,255,0.88);
+      font-size: clamp(1rem, 1.8vw, 1.25rem);
+      line-height: 1.8;
     }
 
     .btn {
-      background-color: #ff7e00;
-      color: white;
-      padding: 12px 24px;
-      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 12px 22px;
+      border: 1px solid var(--color-accent);
       text-decoration: none;
-      border-radius: 5px;
+      border-radius: 999px;
+      background-color: var(--color-accent);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 650;
+      transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--color-accent-dark);
+      background: var(--color-accent-dark);
     }
 
     section {
-      padding: 40px 20px;
+      padding: clamp(64px, 8vw, 104px) 24px;
       text-align: center;
     }
 
@@ -135,205 +198,570 @@
       border: none;
     }
 
+    .section-inner {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+    }
+
+    .section-kicker {
+      margin: 0 0 10px;
+      color: var(--color-accent);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      margin: 0 auto 16px;
+      color: var(--color-ink);
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      font-weight: 400;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      text-wrap: balance;
+    }
+
+    .section-lead {
+      max-width: 720px;
+      margin: 0 auto 38px;
+      color: var(--color-muted);
+      font-size: 1.05rem;
+    }
+
+    #overview {
+      background: var(--color-paper);
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: clamp(24px, 4vw, 52px);
+      align-items: stretch;
+      text-align: left;
+    }
+
+    .overview-copy {
+      padding: clamp(26px, 4vw, 44px);
+      border: 1px solid var(--color-line);
+      border-radius: 20px;
+      background: var(--color-surface);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .overview-copy h3 {
+      margin: 0 0 14px;
+      color: var(--color-accent);
+      font-family: var(--font-heading);
+      font-size: 1.7rem;
+      font-weight: 400;
+    }
+
+    .overview-copy p {
+      margin: 0;
+      color: var(--color-muted);
+      font-size: 1rem;
+      line-height: 1.85;
+    }
+
+    .project-gallery {
+      position: relative;
+      min-height: 360px;
+      overflow: hidden;
+      border-radius: 20px;
+      background: #e9e6df;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .project-gallery img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 360px;
+      max-height: 500px;
+      object-fit: cover;
+      transition: opacity 0.3s;
+    }
+
+    .gallery-button {
+      position: absolute;
+      top: 50%;
+      display: grid;
+      width: 46px;
+      height: 46px;
+      place-items: center;
+      transform: translateY(-50%);
+      border: 1px solid rgba(255,255,255,0.7);
+      border-radius: 50%;
+      background: rgba(255,255,255,0.92);
+      color: var(--color-ink);
+      cursor: pointer;
+      font-size: 1.45rem;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .gallery-button:hover {
+      background: var(--color-accent);
+      color: #fff;
+    }
+
+    .gallery-button.prev {
+      left: 16px;
+    }
+
+    .gallery-button.next {
+      right: 16px;
+    }
+
     .footer {
-      background-color: #222;
-      color: white;
+      background-color: #1f302a;
+      color: rgba(255,255,255,0.78);
       text-align: center;
-      padding: 20px;
-      font-size: 0.9rem;
+      padding: 22px 24px;
+      font-size: 0.88rem;
     }
 
     .conctact {
-      color: rgb(0, 0, 0);
-      text-align: center;
-      font-size: 1.5rem;
-       padding: 20px;
+      width: min(900px, 100%);
+      margin: 0 auto;
+      padding: clamp(34px, 6vw, 64px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 24px;
+      background: #263b33;
+      color: #fff;
+      box-shadow: var(--shadow-soft);
     }
 
     #viewer {
-      color: #000000;
-      background: linear-gradient(0deg, #ffdbcbf3 60%, #ffdbcbf3 100%);
-      border-radius: 18px;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.13);
-
-      margin: 40px auto 32px auto;
-      padding: 48px 24px 36px 24px;
+      margin: 0;
+      background: #24372f;
+      color: #fff;
     }
 
     #viewer h2 {
-      font-size: 2.3rem;
-      margin-bottom: 12px;
-      letter-spacing: 1px;
-      font-weight: 700;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.13);
+      color: #fff;
+    }
+
+    #viewer .section-kicker {
+      color: #e9b18d;
     }
 
     #viewer p {
-      font-size: 1.25rem;
-      margin-bottom: 28px;
-      font-weight: 400;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.10);
+      color: rgba(255,255,255,0.72);
     }
 
     #viewer iframe {
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+      display: block;
+      height: clamp(420px, 66vw, 680px);
+      min-height: 420px;
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.2);
+    }
+
+    #viewer .viewer-layout {
+      position: relative;
+      width: min(1200px, 100%);
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    #viewer .viewer-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      z-index: 2;
+    }
+
+    #viewer .viewer-nav button {
+      display: grid;
+      width: 54px;
+      height: 54px;
+      place-items: center;
+      padding: 0;
+      border: 1px solid rgba(255,255,255,0.65);
+      border-radius: 50%;
+      background: rgba(31, 48, 42, 0.88);
+      color: #fff;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+      transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+    }
+
+    #viewer .viewer-nav button:hover {
+      transform: scale(1.08);
+    }
+
+    #viewer .viewer-nav button svg {
+      width: 24px;
+      height: 24px;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.8;
+    }
+
+    #viewer .viewer-nav button:hover,
+    #viewer .viewer-nav button[aria-pressed="true"] {
+      border-color: #d98b66;
+      background: var(--color-accent);
+      color: #fff;
+    }
+
+    #virtual-tour {
+      background: #eeeae1;
+    }
+
+    #virtual-tour .section-inner {
+      text-align: center;
     }
 
     section#highlights {
-      background-color: #ffdbcbf3;
-  
+      background: var(--color-paper);
     }
 
     section#highlights h2 {
-      font-size: 2rem;
-      margin-bottom: 10px;
+      color: var(--color-ink);
     }
 
     section#highlights p {
-      font-size: 1.1rem;
-      margin-bottom: 30px;
-      color: #555;
+      color: var(--color-muted);
     }
 
     .highlight-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      max-width: 1000px;
+      gap: 16px;
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 0 20px;
+      text-align: left;
     }
 
     .highlight-item {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      min-height: 170px;
+      padding: 24px;
+      border: 1px solid var(--color-line);
+      border-radius: 16px;
+      background: var(--color-surface);
+      box-shadow: 0 8px 26px rgba(38, 53, 47, 0.045);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .highlight-item:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .highlight-icon {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 16px;
+      place-items: center;
+      border-radius: 12px;
+      background: #f5e8df;
+      font-size: 1.25rem;
+    }
+
+    .highlight-item strong {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--color-ink);
+      font-size: 1rem;
+    }
+
+    .highlight-item p {
+      margin: 0;
+      color: var(--color-muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    #location {
+      background: #eeeae1;
+    }
+
+    .location-address {
+      margin: 0 auto 24px;
+      color: var(--color-muted);
+    }
+
+    .map-frame {
+      overflow: hidden;
+      border: 6px solid #fff;
+      border-radius: 20px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .map-frame iframe {
+      display: block;
+      height: clamp(320px, 45vw, 460px);
+    }
+
+    .contact-section {
+      background: var(--color-paper);
+    }
+
+    .contact-section h2 {
+      margin: 0 0 12px;
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+    }
+
+    .contact-section p {
+      margin: 0 0 18px;
+      color: rgba(255,255,255,0.76);
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .contact-links a {
+      padding: 9px 15px;
+      border: 1px solid rgba(255,255,255,0.26);
+      border-radius: 999px;
+      color: #fff;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: background-color 0.2s;
+    }
+
+    .contact-links a:hover {
+      background: rgba(255,255,255,0.13);
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        min-height: 500px;
+        padding: 24px 22px 54px;
+        background-position: 58% center;
+      }
+
+      .hero-content {
+        margin-top: 64px;
+      }
+
+      .overview-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-gallery,
+      .project-gallery img {
+        min-height: 300px;
+      }
+
+      #viewer .viewer-nav {
+        top: 10px;
+        left: 10px;
+      }
+
+      #viewer .viewer-nav button {
+        width: 48px;
+        height: 48px;
+      }
+
+      #viewer .viewer-nav button svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      #viewer iframe {
+        height: 62vh;
+        min-height: 380px;
+      }
+
+      .highlight-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .highlight-item {
+        min-height: 0;
+        padding: 18px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .highlight-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
   <div class="hero">
-    <h1>आशिर्वाद अपार्टमेंट</h1>
-    <p style="font-size:1.1rem; margin-top:8px; position:absolute; top:90px; left:40px; width:max-content; text-align:left;">तुमच्या स्वप्नातल्या घराचा नवीन पत्ता !! </p>
-    <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%;">
-      <h2>2BHK LUXURY Flats</h2>
-      <p2>"घर म्हणजे चार भिंती नव्हे, तेथे असतात आई-बाबांचे आशीर्वाद, ज्यांनी उभं केलं आपल्या आयुष्याचं घरकुल."</p2>
+    <div class="hero-top">
+      <h1>आशिर्वाद अपार्टमेंट</h1>
+      <p>तुमच्या स्वप्नातल्या घराचा नवीन पत्ता</p>
+    </div>
+    <div class="hero-content">
+      <p class="hero-kicker">Yog Construction · Deopur, Dhule</p>
+      <h2>Thoughtful living, made for you.</h2>
+      <p class="hero-quote">घर म्हणजे चार भिंती नव्हे, तेथे असतात आई-बाबांचे आशीर्वाद, ज्यांनी उभं केलं आपल्या आयुष्याचं घरकुल.</p>
     </div>
   </div>
 
-  <section style="padding:60px 20px;">
-  <div style="max-width:1200px; margin:0 auto;">
-     <h2 style="text-align:center; font-size:2.2rem; margin-bottom:40px; color:#333;">Ashirwad Apartment | 2BHK Flats | Deopur, Dhule</h2>
-    <div style="display:flex; flex-wrap:wrap; gap:40px; align-items:stretch;">
-      <div style="flex:1 1 380px; min-width:320px; display:flex; flex-direction:column; justify-content:stretch;">
-        <div style="background:white; padding:32px; border-radius:16px; box-shadow:0 4px 20px rgba(0,0,0,0.1); height:100%;">
-          <h3 style="color:#ff7e00; margin-bottom:16px; font-size:1.4rem;">Project Overview</h3>
-          <p style="color:#555; line-height:1.8; font-size:1.1rem;">
-            Ashirwad Apartment is a thoughtfully crafted residential project that brings together the best of modern lifestyle and timeless comfort. Offering well-planned 2BHK homes, it combines elegant design with practical functionality to meet the needs of today's families. With its prime location, contemporary amenities, and superior construction quality, Ashirwad Apartment is more than just a home—it's a space designed for comfort, convenience, and long-term value.
+  <section id="overview">
+    <div class="section-inner">
+      <p class="section-kicker">A place to call home</p>
+      <h2 class="section-title">Ashirwad Apartment</h2>
+      <p class="section-lead">Comfortable 2BHK living in the heart of Deopur, Dhule.</p>
+      <div class="overview-grid">
+        <div class="overview-copy">
+          <h3>Designed for everyday living</h3>
+          <p>
+            Ashirwad Apartment brings together thoughtful 2BHK layouts, contemporary amenities, and dependable construction. With its convenient location and considered design, it is a welcoming place for families to settle in and feel at home.
           </p>
         </div>
-      </div>
-      <div style="flex:1 1 380px; min-width:320px; display:flex; flex-direction:column; justify-content:stretch;">
-        <div id="slider" style="position:relative; max-width:100%; margin:0 auto; height:100%;">
-          <img id="slider-img" src="../images/ASHIRWAD_APARTMENT_a.jpg" alt="Aashirwad Apartment Building" style="width:100%; max-height:540px; height:100%; object-fit:cover; border-radius:16px; box-shadow:0 2px 18px rgba(0,0,0,0.15); transition:opacity 0.5s;">
-          <button id="prev-btn" style="position:absolute; top:50%; left:10px; transform:translateY(-50%); background:#fff; border:none; border-radius:50%; width:44px; height:44px; font-size:1.7rem; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,0.13);">&#8592;</button>
-          <button id="next-btn" style="position:absolute; top:50%; right:10px; transform:translateY(-50%); background:#fff; border:none; border-radius:50%; width:44px; height:44px; font-size:1.7rem; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,0.13);">&#8594;</button>
+        <div id="slider" class="project-gallery">
+          <img id="slider-img" src="../images/ASHIRWAD_APARTMENT_a.jpg" alt="Ashirwad Apartment building" />
+          <button id="prev-btn" class="gallery-button prev" type="button" aria-label="Previous project photo">&#8592;</button>
+          <button id="next-btn" class="gallery-button next" type="button" aria-label="Next project photo">&#8594;</button>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
   
 <section id="viewer">
-    <h2>Interactive 3D Apartment Viewer</h2>
-    <p>Walk through your future home virtually!</p>
-    <iframe src="https://www.houseinmeta.com/clients/Aashirwad/main-ext.html" title="3D Viewer"></iframe>
+    <p class="section-kicker">Explore in 360°</p>
+    <h2 class="section-title">Take a look around</h2>
+    <p class="section-lead">Choose a view and explore your future home at your own pace.</p>
+    <div class="viewer-layout">
+      <nav class="viewer-nav" aria-label="Apartment viewer options">
+        <button type="button" data-view-src="360Aerial.html" aria-label="Aerial View" title="Aerial View" aria-pressed="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9M9 20v-6h6v6"/></svg>
+        </button>
+        <button type="button" data-view-src="360Pedestrian.html" aria-label="Pedestrian View" title="Pedestrian View" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="m10 22 1-7-3 2-2-3 4-4 4 1 2 4 3 2M13 11l-1 4 4 2"/></svg>
+        </button>
+        <button type="button" data-view-src="../src/main-ext.html" aria-label="Floor Selectors" title="Floor Selectors" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 7 9-4 9 4-9 4-9-4Z"/><path d="m3 12 9 4 9-4M3 17l9 4 9-4"/></svg>
+        </button>
+      </nav>
+      <div class="viewer-frame">
+        <iframe id="apartment-viewer" src="360Aerial.html" title="Aerial View" loading="lazy"></iframe>
+      </div>
+    </div>
   </section>
 
-<section id="virtual-tour" style="padding:60px 20px; background:#ffdbcbf3;">
-  <div style="max-width:900px; margin:0 auto;">
-    <h2 style="text-align:center; font-size:2rem; margin-bottom:32px; color:#333;">Walkthrough into your Future Home</h2>
-    <p style="text-align:center; font-size:1.15rem; margin-bottom:24px;">
-      Watch a walkthrough of Ashirwad Apartment and experience your future home virtually.
-    </p>
-    <div style="display:flex; justify-content:center;">
-      <iframe width="720" height="405" src="https://www.youtube.com/embed/o3CdlQAhyrg"
-        title="walkthrough into your future Home ! " frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen style="border-radius:14px; box-shadow:0 2px 16px rgba(0,0,0,0.13); max-width:100%;"></iframe>
+<section id="virtual-tour">
+  <div class="section-inner">
+    <p class="section-kicker">See it for yourself</p>
+    <h2 class="section-title">Walk through your future home</h2>
+    <p class="section-lead">Watch the Ashirwad Apartment walkthrough and get a feel for the spaces.</p>
+    <div>
+      <a class="btn" href="https://www.youtube.com/watch?v=o3CdlQAhyrg" target="_blank" rel="noopener noreferrer">
+        Watch the walkthrough on YouTube
+      </a>
     </div>
   </div>
 </section>
 <section id="highlights">
-  <h2>Project Highlights</h2>
-  <p>Top features that make Aashirwad apartment your perfect home</p>
-  
-  <div class="highlight-grid">
+  <div class="section-inner">
+    <p class="section-kicker">Made for comfortable living</p>
+    <h2 class="section-title">The details that matter</h2>
+    <p class="section-lead">Thoughtful features that bring convenience, comfort, and peace of mind to everyday life.</p>
+    <div class="highlight-grid">
     <div class="highlight-item">
-      🏊‍♂️ <strong>Modern Architecture & Design</strong><br/>
-      We bring Comfort by providing a strong foundation 
+      <span class="highlight-icon" aria-hidden="true">⌂</span>
+      <strong>Modern design</strong>
+      <p>Considered architecture with a solid foundation.</p>
     </div>
     <div class="highlight-item">
-      🏊‍♂️ <strong>Spaciaus Spaces</strong><br/>
-      We bring spaciaus 2BHK aparments for comfortable living
+      <span class="highlight-icon" aria-hidden="true">◇</span>
+      <strong>Spacious 2BHK homes</strong>
+      <p>Well-planned spaces for comfortable family living.</p>
     </div>
     <div class="highlight-item">
-      🚗 <strong>Parking Spaces</strong><br/>
-      Ample parking for residents and guests
+      <span class="highlight-icon" aria-hidden="true">P</span>
+      <strong>Parking spaces</strong>
+      <p>Ample parking for residents and guests.</p>
     </div>
     <div class="highlight-item">
-      👶 <strong>Proximity</strong><br/>
-      Prime location in Deopur, close to schools, markets & transport
+      <span class="highlight-icon" aria-hidden="true">⌖</span>
+      <strong>Connected location</strong>
+      <p>Close to schools, markets, and local transport.</p>
     </div>
     <div class="highlight-item">
-      🔋 <strong>Safety & Security</strong><br/>
-      Parking area is equipped with CCTV surveillance for added safety
+      <span class="highlight-icon" aria-hidden="true">✓</span>
+      <strong>Safety and security</strong>
+      <p>CCTV surveillance in the parking area for added peace of mind.</p>
     </div>
     <div class="highlight-item">
-      📱 <strong>High Quality Materials</strong><br/>
-      We provide best quality materials for construction
+      <span class="highlight-icon" aria-hidden="true">✧</span>
+      <strong>Quality materials</strong>
+      <p>Carefully selected materials throughout construction.</p>
     </div>
     <div class="highlight-item">
-      🌳 <strong>Lift</strong><br/>
-      Automatic lift with an ARD security system
+      <span class="highlight-icon" aria-hidden="true">↕</span>
+      <strong>Automatic lift</strong>
+      <p>Lift access with an automatic rescue device system.</p>
     </div>
-     <div class="highlight-item">
-      🌳 <strong>Water Supply</strong><br/>
-      24/7 water supply with underground and overhead tanks
+    <div class="highlight-item">
+      <span class="highlight-icon" aria-hidden="true">≈</span>
+      <strong>Reliable water supply</strong>
+      <p>24/7 supply supported by underground and overhead tanks.</p>
+    </div>
     </div>
   </div>
 </section>
 
-<section style="padding:60px 20px; background:linear-gradient(180deg, #ffdbcbf3 0%, #fff 100%);">
-  <div style="max-width:1000px; margin:0 auto;">
-    <h2 style="text-align:center; font-size:2rem; margin-bottom:40px; color:#333;">Location</h2>
-    <p>Plot no. 32, 33, Datta Colony, behind Ekvira Highschool, Deopur Dhule</p>
-    <div style="border-radius:16px; overflow:hidden; box-shadow:0 4px 20px rgba(0,0,0,0.1);">
+<section id="location">
+  <div class="section-inner">
+    <p class="section-kicker">Find us in Deopur</p>
+    <h2 class="section-title">A well-connected address</h2>
+    <p class="location-address">Plot no. 32, 33, Datta Colony, behind Ekvira Highschool, Deopur, Dhule</p>
+    <div class="map-frame">
       <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d783.4364869570496!2d74.7799603191582!3d20.925469501397775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bdecf7d6c42d5ff%3A0x773aaf730421c356!2sShri%20Ekviradevi%20Secondary%20and%20Higher%20Secondary%20School%2C%20Deopur%2C%20Dhule!5e0!3m2!1sen!2sin!4v1757865898639!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>" 
-      </iframe>
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d783.4364869570496!2d74.7799603191582!3d20.925469501397775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bdecf7d6c42d5ff%3A0x773aaf730421c356!2sShri%20Ekviradevi%20Secondary%20and%20Higher%20Secondary%20School%2C%20Deopur%2C%20Dhule!5e0!3m2!1sen!2sin!4v1757865898639!5m2!1sen!2sin"
+        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade" title="Ashirwad Apartment location"></iframe>
     </div>
   </div>
 </section>
 
 
-
-  <section>
+  <section class="contact-section">
     <div class="conctact">
-      <h2>Book a Site Visit Today</h2>
-      <p>For inquiries, bookings, or site visits, reach out to us:</p>
-      <p>Call us at <strong>+91 9822171030</strong> or <strong>+919552538121 </strong></p>
+      <p class="section-kicker">We'd love to show you around</p>
+      <h2>Come see it for yourself</h2>
+      <p>Get in touch to arrange a visit to Ashirwad Apartment.</p>
+      <div class="contact-links">
+        <a href="tel:+919822171030">+91 98221 71030</a>
+        <a href="tel:+919552538121">+91 95525 38121</a>
+      </div>
+    </div>
   </section>
 
   <div class="footer">
     &copy; 2025 Yog Construction with . All rights reserved.
   </div>
 
-</body>
-</html>
 <script>
+  const viewerFrame = document.getElementById('apartment-viewer');
+  const viewerButtons = document.querySelectorAll('.viewer-nav [data-view-src]');
+
+  viewerButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      viewerFrame.src = button.dataset.viewSrc;
+      viewerFrame.title = button.getAttribute('aria-label');
+      viewerButtons.forEach((item) => {
+        item.setAttribute('aria-pressed', String(item === button));
+      });
+    });
+  });
+
   // Slider logic
   const images = [
     "../images/ASHIRWAD_APARTMENT_a.jpg",
@@ -374,3 +802,5 @@
   nextBtn.onclick = showNext;
   showImage(0);
 </script>
+</body>
+</html>

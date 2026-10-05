@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Aerial View
+  </title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #fff;
+      color: #1a1a1a;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── VIEWER ── */
+    #spin-container {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      cursor: grab;
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    #spin-container.dragging { cursor: grabbing; }
+
+    #spin-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      pointer-events: none;
+      will-change: contents;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- VIEWER -->
+  <div id="spin-container">
+    <img id="spin-img" src="" alt="Maison M2 360° view" draggable="false" />
+
+  </div>
+
+  <script>
+    // ─────────────────────────────────────────────
+    // CONFIGURATION — edit these to match your setup
+    // ─────────────────────────────────────────────
+    const CONFIG = {
+      // Base URL — update to your S3/CDN path once uploaded
+      // Sequence4 frames are stored in this subfolder next to this HTML file
+      baseUrl: './360GroundView/',
+
+      // Total number of frames
+      totalFrames: 60,
+
+      // Filename pattern — {index} replaced with the zero-based frame number
+      // Matches: Sequence4_00.png, Sequence4_01.png ... Sequence4_59.png
+      filePattern: 'Sequence4_{index}.png',
+
+      // 2-digit zero-padding: 00, 01 ...
+      padDigits: 2,
+
+      // Pixels of horizontal drag needed to advance one frame
+      dragSensitivity: 6,
+
+      // Number of frames to preload before showing the viewer
+      preloadCount: 36,
+    };
+    // ─────────────────────────────────────────────
+
+    let currentFrame = 0;
+    let images = [];        // preloaded Image objects
+    let loaded = 0;
+    let isReady = false;
+
+    // Drag state
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragAccum = 0;    // accumulated pixels since last frame step
+
+    const spinImg      = document.getElementById('spin-img');
+    const container    = document.getElementById('spin-container');
+    // ── Helpers ──────────────────────────────────
+
+    function frameSrc(index) {
+      const padded = String(index).padStart(CONFIG.padDigits, '0');
+      return CONFIG.baseUrl + CONFIG.filePattern.replace('{index}', padded);
+    }
+
+    function showFrame(index) {
+      currentFrame = ((index % CONFIG.totalFrames) + CONFIG.totalFrames) % CONFIG.totalFrames;
+      if (images[currentFrame] && images[currentFrame].complete) {
+        spinImg.src = images[currentFrame].src;
+      }
+    }
+
+    function onFrameLoaded() {
+      loaded++;
+      // Show viewer once preload count is ready
+      if (!isReady && loaded >= CONFIG.preloadCount) {
+        isReady = true;
+        showFrame(0);
+      }
+    }
+
+    // ── Preload all frames ────────────────────────
+
+    function preloadAll() {
+      for (let i = 0; i < CONFIG.totalFrames; i++) {
+        const img = new Image();
+        img.onload = onFrameLoaded;
+        img.onerror = onFrameLoaded;
+        img.src = frameSrc(i);
+        images[i] = img;
+      }
+    }
+
+    // ── Drag — Mouse ─────────────────────────────
+
+    container.addEventListener('pointerdown', (e) => {
+      if (!isReady) return;
+      isDragging = true;
+      dragStartX = e.clientX;
+      dragAccum = 0;
+      container.classList.add('dragging');
+      container.setPointerCapture(e.pointerId);
+    });
+
+    container.addEventListener('pointermove', (e) => {
+      if (!isDragging) return;
+      const dx = e.clientX - dragStartX;
+      dragStartX = e.clientX;
+      dragAccum += dx;
+
+      const steps = Math.trunc(dragAccum / CONFIG.dragSensitivity);
+      if (steps !== 0) {
+        showFrame(currentFrame - steps);
+        dragAccum -= steps * CONFIG.dragSensitivity;
+      }
+    });
+
+    container.addEventListener('pointerup', () => {
+      isDragging = false;
+      container.classList.remove('dragging');
+    });
+
+    container.addEventListener('pointercancel', () => {
+      isDragging = false;
+      container.classList.remove('dragging');
+    });
+
+    // ── Keyboard ─────────────────────────────────
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft')  showFrame(currentFrame - 1);
+      if (e.key === 'ArrowRight') showFrame(currentFrame + 1);
+    });
+
+    // ── Start ────────────────────────────────────
+
+    preloadAll();
+  </script>
+</body>
+</html>
